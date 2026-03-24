@@ -32,6 +32,16 @@ def get_subset(dataset, max_samples):
         return Subset(dataset, indices)
     return dataset
 
+def get_pos_weight(dataset):
+    if hasattr(dataset, 'samples'):
+        samples = dataset.samples
+    else:
+        samples = [dataset.dataset.samples[i] for i in dataset.indices]
+    labels = [l for _, l in samples]
+    n_neg = labels.count(0)
+    n_pos = labels.count(1)
+    return torch.tensor([n_neg / n_pos], dtype=torch.float)
+
 def train_epoch(model, loader, optimizer, criterion, device):
     model.train()
     total_loss, correct, total = 0, 0, 0
@@ -92,11 +102,16 @@ def main():
                             pin_memory=True)
 
     model = MesoNet4(num_classes=1).to(device)
-    criterion = nn.BCEWithLogitsLoss()
+
+    # Fix class imbalance with pos_weight
+    pos_weight = get_pos_weight(train_ds).to(device)
+    print(f"pos_weight: {pos_weight.item():.4f}")
+    criterion = nn.BCEWithLogitsLoss(pos_weight=pos_weight)
+
     optimizer = Adam(model.parameters(), lr=CONFIG['lr'])
     scheduler = CosineAnnealingLR(optimizer, T_max=CONFIG['num_epochs'])
 
-    wandb.init(project='deepfake-detection', config=CONFIG, name='mesonet4-baseline')
+    wandb.init(project='deepfake-detection', config=CONFIG, name='mesonet4-baseline-v2')
 
     best_val_acc = 0
     for epoch in range(1, CONFIG['num_epochs'] + 1):

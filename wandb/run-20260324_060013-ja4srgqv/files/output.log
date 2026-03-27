@@ -1,0 +1,7 @@
+Train:  14%|███████▊                                               | 89/625 [00:42<04:08,  2.15it/s, loss=0.0740, acc=0.9315]
+Epoch 1/10 | Train Loss: 0.3942 Acc: 0.8525 | Val Loss: 0.3416 Acc: 0.8526
+Best model updated: val_acc=0.8526
+Epoch 2/10 | Train Loss: 0.2880 Acc: 0.8786 | Val Loss: 0.3044 Acc: 0.8614
+Best model updated: val_acc=0.8614
+Epoch 3/10 | Train Loss: 0.2145 Acc: 0.9114 | Val Loss: 0.2893 Acc: 0.8766
+Best model updated: val_acc=0.8766

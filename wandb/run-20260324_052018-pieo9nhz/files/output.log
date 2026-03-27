@@ -1,0 +1,33 @@
+Exception in thread Thread-17 (_pin_memory_loop):                                                                            
+Epoch 1/10 | Train Loss: 0.4361 Acc: 0.8550 | Val Loss: 0.4126 Acc: 0.8488
+Best model updated: val_acc=0.8488
+Epoch 2/10 | Train Loss: 0.4233 Acc: 0.8603 | Val Loss: 0.4147 Acc: 0.8488
+Epoch 3/10 | Train Loss: 0.4128 Acc: 0.8603 | Val Loss: 0.4163 Acc: 0.8488
+Epoch 4/10 | Train Loss: 0.4009 Acc: 0.8603 | Val Loss: 0.3967 Acc: 0.8488
+Epoch 5/10 | Train Loss: 0.3950 Acc: 0.8603 | Val Loss: 0.3937 Acc: 0.8488
+Epoch 6/10 | Train Loss: 0.3905 Acc: 0.8603 | Val Loss: 0.3963 Acc: 0.8488
+Epoch 7/10 | Train Loss: 0.3857 Acc: 0.8603 | Val Loss: 0.3859 Acc: 0.8488
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/threading.py", line 1016, in _bootstrap_inner
+    self.run()
+  File "/home/mdaafi04/AI-Based-Image-Authenticity-and-Deepfake-Detection-Tool/training/train_mesonet.py", line 123, in <module>
+    main()
+  File "/home/mdaafi04/AI-Based-Image-Authenticity-and-Deepfake-Detection-Tool/training/train_mesonet.py", line 103, in main
+    train_loss, train_acc = train_epoch(model, train_loader, optimizer, criterion, device)
+
+  File "/home/mdaafi04/AI-Based-Image-Authenticity-and-Deepfake-Detection-Tool/venv/lib/python3.10/site-packages/torch/utils/data/_utils/pin_memory.py", line 53, in _pin_memory_loop
+    do_one_step()  File "/home/mdaafi04/AI-Based-Image-Authenticity-and-Deepfake-Detection-Tool/venv/lib/python3.10/site-packages/torch/utils/data/dataloader.py", line 631, in __next__
+    data = self._next_data()
+  File "/home/mdaafi04/AI-Based-Image-Authenticity-and-Deepfake-Detection-Tool/venv/lib/python3.10/site-packages/torch/utils/data/dataloader.py", line 1329, in _next_data
+    idx, data = self._get_data()
+  File "/home/mdaafi04/AI-Based-Image-Authenticity-and-Deepfake-Detection-Tool/venv/lib/python3.10/site-packages/torch/utils/data/dataloader.py", line 1285, in _get_data
+    success, data = self._try_get_data()
+
+  File "/usr/lib/python3.10/multiprocessing/queues.py", line 122, in get
+  File "/usr/lib/python3.10/queue.py", line 180, in get
+    self.not_empty.wait(remaining)
+    return _ForkingPickler.loads(res)  File "/usr/lib/python3.10/threading.py", line 324, in wait
+    gotit = waiter.acquire(True, timeout)
+KeyboardInterrupt
+
+  File "/home/mdaafi04/AI-Based-Image-Authenticity-and-Deepfake-Detection-Tool/venv/lib/python3.10/site-packages/torch/multiprocessing/reductions.py", line 495, in rebuild_storage_fd

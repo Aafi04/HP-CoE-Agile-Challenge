@@ -1,0 +1,20 @@
+                                                                                                                             
+Epoch 1/10 | Train Loss: 0.4115 Acc: 0.8531 | Val Loss: 0.3752 Acc: 0.8504
+Best model updated: val_acc=0.8504
+Epoch 2/10 | Train Loss: 0.3175 Acc: 0.8666 | Val Loss: 0.2959 Acc: 0.8812
+Best model updated: val_acc=0.8812
+Epoch 3/10 | Train Loss: 0.2421 Acc: 0.8982 | Val Loss: 0.2519 Acc: 0.8986
+Best model updated: val_acc=0.8986
+Epoch 4/10 | Train Loss: 0.1882 Acc: 0.9205 | Val Loss: 0.2384 Acc: 0.9008
+Best model updated: val_acc=0.9008
+Epoch 5/10 | Train Loss: 0.1576 Acc: 0.9328 | Val Loss: 0.2323 Acc: 0.9086
+Checkpoint saved: checkpoints/efficientnet_epoch5.pt
+Best model updated: val_acc=0.9086
+Epoch 6/10 | Train Loss: 0.1337 Acc: 0.9455 | Val Loss: 0.2446 Acc: 0.9082
+Epoch 7/10 | Train Loss: 0.1197 Acc: 0.9536 | Val Loss: 0.2466 Acc: 0.9066
+Epoch 8/10 | Train Loss: 0.1109 Acc: 0.9556 | Val Loss: 0.2480 Acc: 0.9088
+Best model updated: val_acc=0.9088
+Epoch 9/10 | Train Loss: 0.1077 Acc: 0.9583 | Val Loss: 0.2464 Acc: 0.9136
+Best model updated: val_acc=0.9136
+Epoch 10/10 | Train Loss: 0.1014 Acc: 0.9597 | Val Loss: 0.2500 Acc: 0.9106
+Checkpoint saved: checkpoints/efficientnet_epoch10.pt

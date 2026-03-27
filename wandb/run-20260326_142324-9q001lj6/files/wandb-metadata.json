@@ -1,0 +1,40 @@
+{
+  "os": "Linux-6.8.0-1052-gcp-x86_64-with-glibc2.35",
+  "python": "CPython 3.10.12",
+  "startedAt": "2026-03-26T14:23:24.303484Z",
+  "program": "/home/mdaafi04/AI-Based-Image-Authenticity-and-Deepfake-Detection-Tool/training/train_hybrid.py",
+  "codePath": "training/train_hybrid.py",
+  "codePathLocal": "training/train_hybrid.py",
+  "git": {
+    "remote": "https://github.com/Aafi04/AI-Based-Image-Authenticity-and-Deepfake-Detection-Tool.git",
+    "commit": "130e21abb1a472fd0a7805fecd151a7f16cca357"
+  },
+  "email": "mdaafi04@gmail.com",
+  "root": "/home/mdaafi04/AI-Based-Image-Authenticity-and-Deepfake-Detection-Tool",
+  "host": "deepfake-train",
+  "executable": "/home/mdaafi04/AI-Based-Image-Authenticity-and-Deepfake-Detection-Tool/venv/bin/python",
+  "cpu_count": 2,
+  "cpu_count_logical": 4,
+  "gpu": "Tesla T4",
+  "gpu_count": 1,
+  "disk": {
+    "/": {
+      "total": "103865303040",
+      "used": "44251181056"
+    }
+  },
+  "memory": {
+    "total": "15710253056"
+  },
+  "gpu_nvidia": [
+    {
+      "name": "Tesla T4",
+      "memoryTotal": "16106127360",
+      "cudaCores": 2560,
+      "architecture": "Turing",
+      "uuid": "GPU-d905204a-3d33-1e4a-e947-fd5731bc536a"
+    }
+  ],
+  "cudaVersion": "12.8",
+  "writerId": "hl6h6pryzxuzy41gn6d0ibvdh0g6zqyd"
+}

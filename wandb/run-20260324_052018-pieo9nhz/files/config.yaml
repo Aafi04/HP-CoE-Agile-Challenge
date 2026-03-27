@@ -1,0 +1,76 @@
+_wandb:
+    value:
+        cli_version: 0.25.1
+        e:
+            q25hj65wsden0cz7kzpurwcogq2pp8gy:
+                codePath: training/train_mesonet.py
+                codePathLocal: training/train_mesonet.py
+                cpu_count: 2
+                cpu_count_logical: 4
+                cudaVersion: "12.8"
+                disk:
+                    /:
+                        total: "103865303040"
+                        used: "44058066944"
+                email: mdaafi04@gmail.com
+                executable: /home/mdaafi04/AI-Based-Image-Authenticity-and-Deepfake-Detection-Tool/venv/bin/python
+                git:
+                    commit: 8e149948226a4ff5209df5276bf944bb5da86b6b
+                    remote: https://github.com/Aafi04/AI-Based-Image-Authenticity-and-Deepfake-Detection-Tool.git
+                gpu: Tesla T4
+                gpu_count: 1
+                gpu_nvidia:
+                    - architecture: Turing
+                      cudaCores: 2560
+                      memoryTotal: "16106127360"
+                      name: Tesla T4
+                      uuid: GPU-e443cb7a-708c-217d-f066-6da4cc9f2fe9
+                host: deepfake-train
+                memory:
+                    total: "15710248960"
+                os: Linux-6.8.0-1048-gcp-x86_64-with-glibc2.35
+                program: /home/mdaafi04/AI-Based-Image-Authenticity-and-Deepfake-Detection-Tool/training/train_mesonet.py
+                python: CPython 3.10.12
+                root: /home/mdaafi04/AI-Based-Image-Authenticity-and-Deepfake-Detection-Tool
+                startedAt: "2026-03-24T05:20:18.419448Z"
+                writerId: q25hj65wsden0cz7kzpurwcogq2pp8gy
+        m: []
+        python_version: 3.10.12
+        t:
+            "1":
+                - 1
+                - 41
+            "2":
+                - 1
+                - 41
+            "3":
+                - 13
+                - 16
+            "4": 3.10.12
+            "5": 0.25.1
+            "8":
+                - 2
+            "12": 0.25.1
+            "13": linux-x86_64
+batch_size:
+    value: 64
+checkpoint_dir:
+    value: checkpoints
+data_root:
+    value: /home/mdaafi04/data
+dataset:
+    value: faceforensics
+device:
+    value: cuda
+img_size:
+    value: 224
+lr:
+    value: 0.001
+max_train_samples:
+    value: 20000
+max_val_samples:
+    value: 5000
+num_epochs:
+    value: 10
+num_workers:
+    value: 4

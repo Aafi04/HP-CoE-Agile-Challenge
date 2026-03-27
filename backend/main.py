@@ -1,6 +1,7 @@
 import sys
 sys.path.insert(0, '.')
 import io
+import os
 import base64
 import torch
 import numpy as np
@@ -24,8 +25,8 @@ app.add_middleware(
 
 # --- Global model state ---
 MODEL = None
-DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
-MODEL_PATH = 'checkpoints/hybrid_best.pt'
+DEVICE = os.environ.get('DEVICE', 'cuda' if torch.cuda.is_available() else 'cpu')
+MODEL_PATH = os.environ.get('MODEL_PATH', 'checkpoints/hybrid_best.pt')
 MODEL_TYPE = 'hybrid'
 TRANSFORM = get_val_transforms(224)
 
@@ -48,11 +49,9 @@ async def health():
 
 @app.post("/predict", response_model=PredictionResponse)
 async def predict(file: UploadFile = File(...)):
-    # Validate file type
     if not file.content_type.startswith("image/"):
         raise HTTPException(status_code=400, detail="Only image files are supported.")
 
-    # Read and preprocess image
     contents = await file.read()
     try:
         image = Image.open(io.BytesIO(contents)).convert('RGB')
@@ -61,12 +60,10 @@ async def predict(file: UploadFile = File(...)):
 
     image_tensor = TRANSFORM(image).unsqueeze(0).to(DEVICE)
 
-    # Run inference + GradCAM
     confidence, heatmap, is_fake = generate_gradcam(
         MODEL, image_tensor, MODEL_TYPE, DEVICE
     )
 
-    # Encode heatmap as base64 for frontend
     heatmap_bgr = cv2.cvtColor(heatmap, cv2.COLOR_RGB2BGR)
     _, buffer = cv2.imencode('.jpg', heatmap_bgr)
     heatmap_b64 = base64.b64encode(buffer).decode('utf-8')

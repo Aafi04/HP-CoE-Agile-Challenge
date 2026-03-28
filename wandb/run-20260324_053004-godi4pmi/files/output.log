@@ -1,0 +1,14 @@
+Traceback (most recent call last):                                                                                           
+Epoch 1/10 | Train Loss: 0.1964 Acc: 0.7852 | Val Loss: 0.1968 Acc: 0.8574
+Best model updated: val_acc=0.8574
+Epoch 2/10 | Train Loss: 0.1958 Acc: 0.8034 | Val Loss: 0.1962 Acc: 0.6918
+Epoch 3/10 | Train Loss: 0.1957 Acc: 0.7745 | Val Loss: 0.1964 Acc: 0.7974
+Epoch 4/10 | Train Loss: 0.1951 Acc: 0.7304 | Val Loss: 0.1930 Acc: 0.4974
+Epoch 5/10 | Train Loss: 0.1927 Acc: 0.6875 | Val Loss: 0.1907 Acc: 0.3752
+  File "/home/mdaafi04/AI-Based-Image-Authenticity-and-Deepfake-Detection-Tool/training/train_mesonet.py", line 138, in <module>
+    main()
+  File "/home/mdaafi04/AI-Based-Image-Authenticity-and-Deepfake-Detection-Tool/training/train_mesonet.py", line 118, in main
+    train_loss, train_acc = train_epoch(model, train_loader, optimizer, criterion, device)
+  File "/home/mdaafi04/AI-Based-Image-Authenticity-and-Deepfake-Detection-Tool/training/train_mesonet.py", line 57, in train_epoch
+    total_loss += loss.item() * imgs.size(0)
+KeyboardInterrupt

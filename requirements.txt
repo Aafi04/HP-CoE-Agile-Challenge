@@ -67,3 +67,5 @@ tzdata==2025.3
 urllib3==2.6.3
 uvicorn==0.41.0
 wandb==0.25.1
+grad-cam==1.5.5
+python-multipart==0.0.9

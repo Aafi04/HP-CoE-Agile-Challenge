@@ -63,3 +63,4 @@ build/
 
 # OS
 Thumbs.db
+.env.local

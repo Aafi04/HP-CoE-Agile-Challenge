@@ -1,0 +1,14 @@
+Traceback (most recent call last):                                                                                           
+Epoch 1/10 | Train Loss: 0.3941 Acc: 0.8551 | Val Loss: 0.3356 Acc: 0.8482
+Best model updated: val_acc=0.8482
+Epoch 2/10 | Train Loss: 0.2826 Acc: 0.8808 | Val Loss: 0.2739 Acc: 0.8862
+Best model updated: val_acc=0.8862
+Epoch 3/10 | Train Loss: 0.2110 Acc: 0.9127 | Val Loss: 0.2458 Acc: 0.8960
+Best model updated: val_acc=0.8960
+  File "/home/mdaafi04/AI-Based-Image-Authenticity-and-Deepfake-Detection-Tool/training/train_hybrid.py", line 132, in <module>
+    main()
+  File "/home/mdaafi04/AI-Based-Image-Authenticity-and-Deepfake-Detection-Tool/training/train_hybrid.py", line 105, in main
+    train_loss, train_acc = train_epoch(model, train_loader, optimizer, criterion, device)
+  File "/home/mdaafi04/AI-Based-Image-Authenticity-and-Deepfake-Detection-Tool/training/train_hybrid.py", line 49, in train_epoch
+    total_loss += loss.item() * imgs.size(0)
+KeyboardInterrupt

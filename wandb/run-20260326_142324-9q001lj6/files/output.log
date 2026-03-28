@@ -1,0 +1,17 @@
+                                                                                        
+Epoch 1/10 | Train Loss: 0.3936 Acc: 0.8528 | Val Loss: 0.3355 Acc: 0.8486
+Best model updated: val_acc=0.8486
+Epoch 2/10 | Train Loss: 0.2865 Acc: 0.8777 | Val Loss: 0.2709 Acc: 0.8812
+Best model updated: val_acc=0.8812
+Epoch 3/10 | Train Loss: 0.2072 Acc: 0.9133 | Val Loss: 0.2612 Acc: 0.8918
+Best model updated: val_acc=0.8918
+Epoch 4/10 | Train Loss: 0.1690 Acc: 0.9323 | Val Loss: 0.2826 Acc: 0.8814
+Epoch 5/10 | Train Loss: 0.1381 Acc: 0.9454 | Val Loss: 0.2719 Acc: 0.8998
+Checkpoint saved: checkpoints/hybrid_epoch5.pt
+Best model updated: val_acc=0.8998
+Epoch 6/10 | Train Loss: 0.1125 Acc: 0.9571 | Val Loss: 0.2864 Acc: 0.8984
+Epoch 7/10 | Train Loss: 0.1023 Acc: 0.9606 | Val Loss: 0.3008 Acc: 0.8968
+Epoch 8/10 | Train Loss: 0.0916 Acc: 0.9645 | Val Loss: 0.2951 Acc: 0.8986
+Epoch 9/10 | Train Loss: 0.0900 Acc: 0.9641 | Val Loss: 0.3077 Acc: 0.8952
+Epoch 10/10 | Train Loss: 0.0860 Acc: 0.9650 | Val Loss: 0.3084 Acc: 0.8968
+Checkpoint saved: checkpoints/hybrid_epoch10.pt

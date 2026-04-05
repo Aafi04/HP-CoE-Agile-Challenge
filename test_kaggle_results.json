@@ -1,0 +1,2454 @@
+{
+  "date": "1775365489.080314",
+  "model_path": "backend/models/hybrid_full_best.pt",
+  "device": "cpu",
+  "total_tested": 200,
+  "results_by_class": {
+    "Real": [
+      {
+        "file": "real_0.jpg",
+        "true_label": "REAL",
+        "predicted_label": "REAL",
+        "confidence": 0.002366401953622699,
+        "is_correct": true
+      },
+      {
+        "file": "real_1.jpg",
+        "true_label": "REAL",
+        "predicted_label": "REAL",
+        "confidence": 0.0034192251041531563,
+        "is_correct": true
+      },
+      {
+        "file": "real_10.jpg",
+        "true_label": "REAL",
+        "predicted_label": "REAL",
+        "confidence": 0.0004552247701212764,
+        "is_correct": true
+      },
+      {
+        "file": "real_100.jpg",
+        "true_label": "REAL",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 1.0,
+        "is_correct": false
+      },
+      {
+        "file": "real_1000.jpg",
+        "true_label": "REAL",
+        "predicted_label": "REAL",
+        "confidence": 0.006786449812352657,
+        "is_correct": true
+      },
+      {
+        "file": "real_1001.jpg",
+        "true_label": "REAL",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 0.7792255878448486,
+        "is_correct": false
+      },
+      {
+        "file": "real_1002.jpg",
+        "true_label": "REAL",
+        "predicted_label": "REAL",
+        "confidence": 0.042918723076581955,
+        "is_correct": true
+      },
+      {
+        "file": "real_1003.jpg",
+        "true_label": "REAL",
+        "predicted_label": "REAL",
+        "confidence": 0.019426604732871056,
+        "is_correct": true
+      },
+      {
+        "file": "real_1004.jpg",
+        "true_label": "REAL",
+        "predicted_label": "REAL",
+        "confidence": 0.0003676307387650013,
+        "is_correct": true
+      },
+      {
+        "file": "real_1005.jpg",
+        "true_label": "REAL",
+        "predicted_label": "REAL",
+        "confidence": 0.0018833051435649395,
+        "is_correct": true
+      },
+      {
+        "file": "real_1006.jpg",
+        "true_label": "REAL",
+        "predicted_label": "REAL",
+        "confidence": 0.0006110755493864417,
+        "is_correct": true
+      },
+      {
+        "file": "real_1007.jpg",
+        "true_label": "REAL",
+        "predicted_label": "REAL",
+        "confidence": 0.008956575766205788,
+        "is_correct": true
+      },
+      {
+        "file": "real_1008.jpg",
+        "true_label": "REAL",
+        "predicted_label": "REAL",
+        "confidence": 0.07544351369142532,
+        "is_correct": true
+      },
+      {
+        "file": "real_1009.jpg",
+        "true_label": "REAL",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 0.9892298579216003,
+        "is_correct": false
+      },
+      {
+        "file": "real_101.jpg",
+        "true_label": "REAL",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 0.9999979734420776,
+        "is_correct": false
+      },
+      {
+        "file": "real_1010.jpg",
+        "true_label": "REAL",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 0.9160715937614441,
+        "is_correct": false
+      },
+      {
+        "file": "real_1011.jpg",
+        "true_label": "REAL",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 0.5908464193344116,
+        "is_correct": false
+      },
+      {
+        "file": "real_1012.jpg",
+        "true_label": "REAL",
+        "predicted_label": "REAL",
+        "confidence": 0.1365770399570465,
+        "is_correct": true
+      },
+      {
+        "file": "real_1013.jpg",
+        "true_label": "REAL",
+        "predicted_label": "REAL",
+        "confidence": 0.0021073692478239536,
+        "is_correct": true
+      },
+      {
+        "file": "real_1014.jpg",
+        "true_label": "REAL",
+        "predicted_label": "REAL",
+        "confidence": 0.001027342863380909,
+        "is_correct": true
+      },
+      {
+        "file": "real_1015.jpg",
+        "true_label": "REAL",
+        "predicted_label": "REAL",
+        "confidence": 0.022523673251271248,
+        "is_correct": true
+      },
+      {
+        "file": "real_1016.jpg",
+        "true_label": "REAL",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 0.9895899891853333,
+        "is_correct": false
+      },
+      {
+        "file": "real_1017.jpg",
+        "true_label": "REAL",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 0.9238914251327515,
+        "is_correct": false
+      },
+      {
+        "file": "real_1018.jpg",
+        "true_label": "REAL",
+        "predicted_label": "REAL",
+        "confidence": 0.00101692252792418,
+        "is_correct": true
+      },
+      {
+        "file": "real_1019.jpg",
+        "true_label": "REAL",
+        "predicted_label": "REAL",
+        "confidence": 0.044215742498636246,
+        "is_correct": true
+      },
+      {
+        "file": "real_102.jpg",
+        "true_label": "REAL",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 1.0,
+        "is_correct": false
+      },
+      {
+        "file": "real_1020.jpg",
+        "true_label": "REAL",
+        "predicted_label": "REAL",
+        "confidence": 0.011906396597623825,
+        "is_correct": true
+      },
+      {
+        "file": "real_1021.jpg",
+        "true_label": "REAL",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 0.9460086822509766,
+        "is_correct": false
+      },
+      {
+        "file": "real_1022.jpg",
+        "true_label": "REAL",
+        "predicted_label": "REAL",
+        "confidence": 0.001913460553623736,
+        "is_correct": true
+      },
+      {
+        "file": "real_1023.jpg",
+        "true_label": "REAL",
+        "predicted_label": "REAL",
+        "confidence": 0.0056083472445607185,
+        "is_correct": true
+      },
+      {
+        "file": "real_1024.jpg",
+        "true_label": "REAL",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 1.0,
+        "is_correct": false
+      },
+      {
+        "file": "real_1025.jpg",
+        "true_label": "REAL",
+        "predicted_label": "REAL",
+        "confidence": 0.00229287869296968,
+        "is_correct": true
+      },
+      {
+        "file": "real_1026.jpg",
+        "true_label": "REAL",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 0.8417460322380066,
+        "is_correct": false
+      },
+      {
+        "file": "real_1027.jpg",
+        "true_label": "REAL",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 0.9808951020240784,
+        "is_correct": false
+      },
+      {
+        "file": "real_1028.jpg",
+        "true_label": "REAL",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 0.5245423316955566,
+        "is_correct": false
+      },
+      {
+        "file": "real_1029.jpg",
+        "true_label": "REAL",
+        "predicted_label": "REAL",
+        "confidence": 0.0002785608230624348,
+        "is_correct": true
+      },
+      {
+        "file": "real_103.jpg",
+        "true_label": "REAL",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 1.0,
+        "is_correct": false
+      },
+      {
+        "file": "real_1030.jpg",
+        "true_label": "REAL",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 0.9999964237213135,
+        "is_correct": false
+      },
+      {
+        "file": "real_1031.jpg",
+        "true_label": "REAL",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 0.9522566795349121,
+        "is_correct": false
+      },
+      {
+        "file": "real_1032.jpg",
+        "true_label": "REAL",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 1.0,
+        "is_correct": false
+      },
+      {
+        "file": "real_1033.jpg",
+        "true_label": "REAL",
+        "predicted_label": "REAL",
+        "confidence": 0.0027190386317670345,
+        "is_correct": true
+      },
+      {
+        "file": "real_1034.jpg",
+        "true_label": "REAL",
+        "predicted_label": "REAL",
+        "confidence": 0.15653225779533386,
+        "is_correct": true
+      },
+      {
+        "file": "real_1035.jpg",
+        "true_label": "REAL",
+        "predicted_label": "REAL",
+        "confidence": 0.005852953530848026,
+        "is_correct": true
+      },
+      {
+        "file": "real_1036.jpg",
+        "true_label": "REAL",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 0.9420039057731628,
+        "is_correct": false
+      },
+      {
+        "file": "real_1037.jpg",
+        "true_label": "REAL",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 0.8521313071250916,
+        "is_correct": false
+      },
+      {
+        "file": "real_1038.jpg",
+        "true_label": "REAL",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 0.8281609416007996,
+        "is_correct": false
+      },
+      {
+        "file": "real_1039.jpg",
+        "true_label": "REAL",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 0.7696523666381836,
+        "is_correct": false
+      },
+      {
+        "file": "real_104.jpg",
+        "true_label": "REAL",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 0.999997615814209,
+        "is_correct": false
+      },
+      {
+        "file": "real_1040.jpg",
+        "true_label": "REAL",
+        "predicted_label": "REAL",
+        "confidence": 0.050884947180747986,
+        "is_correct": true
+      },
+      {
+        "file": "real_1041.jpg",
+        "true_label": "REAL",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 0.9706870913505554,
+        "is_correct": false
+      },
+      {
+        "file": "real_0.jpg",
+        "true_label": "REAL",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 0.9964656829833984,
+        "is_correct": false
+      },
+      {
+        "file": "real_1.jpg",
+        "true_label": "REAL",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 0.9941651225090027,
+        "is_correct": false
+      },
+      {
+        "file": "real_10.jpg",
+        "true_label": "REAL",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 0.9999997615814209,
+        "is_correct": false
+      },
+      {
+        "file": "real_100.jpg",
+        "true_label": "REAL",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 1.0,
+        "is_correct": false
+      },
+      {
+        "file": "real_1000.jpg",
+        "true_label": "REAL",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 0.9992051720619202,
+        "is_correct": false
+      },
+      {
+        "file": "real_10000.jpg",
+        "true_label": "REAL",
+        "predicted_label": "REAL",
+        "confidence": 4.6255005145212635e-05,
+        "is_correct": true
+      },
+      {
+        "file": "real_10001.jpg",
+        "true_label": "REAL",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 0.999596893787384,
+        "is_correct": false
+      },
+      {
+        "file": "real_10002.jpg",
+        "true_label": "REAL",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 0.998588502407074,
+        "is_correct": false
+      },
+      {
+        "file": "real_10003.jpg",
+        "true_label": "REAL",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 0.9999812841415405,
+        "is_correct": false
+      },
+      {
+        "file": "real_10004.jpg",
+        "true_label": "REAL",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 0.9969072937965393,
+        "is_correct": false
+      },
+      {
+        "file": "real_10005.jpg",
+        "true_label": "REAL",
+        "predicted_label": "REAL",
+        "confidence": 0.06393688917160034,
+        "is_correct": true
+      },
+      {
+        "file": "real_10006.jpg",
+        "true_label": "REAL",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 0.998374342918396,
+        "is_correct": false
+      },
+      {
+        "file": "real_10007.jpg",
+        "true_label": "REAL",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 0.9999998807907104,
+        "is_correct": false
+      },
+      {
+        "file": "real_10008.jpg",
+        "true_label": "REAL",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 0.9999935626983643,
+        "is_correct": false
+      },
+      {
+        "file": "real_10009.jpg",
+        "true_label": "REAL",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 0.9990817308425903,
+        "is_correct": false
+      },
+      {
+        "file": "real_1001.jpg",
+        "true_label": "REAL",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 0.58226078748703,
+        "is_correct": false
+      },
+      {
+        "file": "real_10010.jpg",
+        "true_label": "REAL",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 0.9425987005233765,
+        "is_correct": false
+      },
+      {
+        "file": "real_10011.jpg",
+        "true_label": "REAL",
+        "predicted_label": "REAL",
+        "confidence": 0.009372309781610966,
+        "is_correct": true
+      },
+      {
+        "file": "real_10012.jpg",
+        "true_label": "REAL",
+        "predicted_label": "REAL",
+        "confidence": 0.00021643878426402807,
+        "is_correct": true
+      },
+      {
+        "file": "real_10013.jpg",
+        "true_label": "REAL",
+        "predicted_label": "REAL",
+        "confidence": 0.12893350422382355,
+        "is_correct": true
+      },
+      {
+        "file": "real_10014.jpg",
+        "true_label": "REAL",
+        "predicted_label": "REAL",
+        "confidence": 0.006724967155605555,
+        "is_correct": true
+      },
+      {
+        "file": "real_10015.jpg",
+        "true_label": "REAL",
+        "predicted_label": "REAL",
+        "confidence": 0.028149908408522606,
+        "is_correct": true
+      },
+      {
+        "file": "real_10016.jpg",
+        "true_label": "REAL",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 0.8813799023628235,
+        "is_correct": false
+      },
+      {
+        "file": "real_10017.jpg",
+        "true_label": "REAL",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 0.9999991655349731,
+        "is_correct": false
+      },
+      {
+        "file": "real_10018.jpg",
+        "true_label": "REAL",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 0.9985352754592896,
+        "is_correct": false
+      },
+      {
+        "file": "real_10019.jpg",
+        "true_label": "REAL",
+        "predicted_label": "REAL",
+        "confidence": 0.4023742377758026,
+        "is_correct": true
+      },
+      {
+        "file": "real_1002.jpg",
+        "true_label": "REAL",
+        "predicted_label": "REAL",
+        "confidence": 0.0009863056475296617,
+        "is_correct": true
+      },
+      {
+        "file": "real_10020.jpg",
+        "true_label": "REAL",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 0.999805748462677,
+        "is_correct": false
+      },
+      {
+        "file": "real_10021.jpg",
+        "true_label": "REAL",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 0.9999955892562866,
+        "is_correct": false
+      },
+      {
+        "file": "real_10022.jpg",
+        "true_label": "REAL",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 0.9999995231628418,
+        "is_correct": false
+      },
+      {
+        "file": "real_10023.jpg",
+        "true_label": "REAL",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 1.0,
+        "is_correct": false
+      },
+      {
+        "file": "real_10024.jpg",
+        "true_label": "REAL",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 1.0,
+        "is_correct": false
+      },
+      {
+        "file": "real_10025.jpg",
+        "true_label": "REAL",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 0.9999992847442627,
+        "is_correct": false
+      },
+      {
+        "file": "real_10026.jpg",
+        "true_label": "REAL",
+        "predicted_label": "REAL",
+        "confidence": 0.4396664798259735,
+        "is_correct": true
+      },
+      {
+        "file": "real_10027.jpg",
+        "true_label": "REAL",
+        "predicted_label": "REAL",
+        "confidence": 0.014357630163431168,
+        "is_correct": true
+      },
+      {
+        "file": "real_10028.jpg",
+        "true_label": "REAL",
+        "predicted_label": "REAL",
+        "confidence": 0.043102048337459564,
+        "is_correct": true
+      },
+      {
+        "file": "real_10029.jpg",
+        "true_label": "REAL",
+        "predicted_label": "REAL",
+        "confidence": 1.408127627655631e-05,
+        "is_correct": true
+      },
+      {
+        "file": "real_1003.jpg",
+        "true_label": "REAL",
+        "predicted_label": "REAL",
+        "confidence": 0.0046853055246174335,
+        "is_correct": true
+      },
+      {
+        "file": "real_10030.jpg",
+        "true_label": "REAL",
+        "predicted_label": "REAL",
+        "confidence": 0.004050379153341055,
+        "is_correct": true
+      },
+      {
+        "file": "real_10031.jpg",
+        "true_label": "REAL",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 0.7890942692756653,
+        "is_correct": false
+      },
+      {
+        "file": "real_10032.jpg",
+        "true_label": "REAL",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 0.6533828973770142,
+        "is_correct": false
+      },
+      {
+        "file": "real_10033.jpg",
+        "true_label": "REAL",
+        "predicted_label": "REAL",
+        "confidence": 0.0008928290335461497,
+        "is_correct": true
+      },
+      {
+        "file": "real_10034.jpg",
+        "true_label": "REAL",
+        "predicted_label": "REAL",
+        "confidence": 0.24888348579406738,
+        "is_correct": true
+      },
+      {
+        "file": "real_10035.jpg",
+        "true_label": "REAL",
+        "predicted_label": "REAL",
+        "confidence": 0.005762975197285414,
+        "is_correct": true
+      },
+      {
+        "file": "real_10036.jpg",
+        "true_label": "REAL",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 0.9997900128364563,
+        "is_correct": false
+      },
+      {
+        "file": "real_10037.jpg",
+        "true_label": "REAL",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 0.9975903034210205,
+        "is_correct": false
+      },
+      {
+        "file": "real_10038.jpg",
+        "true_label": "REAL",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 1.0,
+        "is_correct": false
+      },
+      {
+        "file": "real_10039.jpg",
+        "true_label": "REAL",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 0.9182882308959961,
+        "is_correct": false
+      },
+      {
+        "file": "real_1004.jpg",
+        "true_label": "REAL",
+        "predicted_label": "REAL",
+        "confidence": 0.00024423791910521686,
+        "is_correct": true
+      },
+      {
+        "file": "real_10040.jpg",
+        "true_label": "REAL",
+        "predicted_label": "REAL",
+        "confidence": 0.0037118420004844666,
+        "is_correct": true
+      }
+    ],
+    "Fake": [
+      {
+        "file": "fake_0.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "REAL",
+        "confidence": 0.07105432450771332,
+        "is_correct": false
+      },
+      {
+        "file": "fake_1.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "REAL",
+        "confidence": 0.0056145149283111095,
+        "is_correct": false
+      },
+      {
+        "file": "fake_10.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "REAL",
+        "confidence": 0.00071241136174649,
+        "is_correct": false
+      },
+      {
+        "file": "fake_100.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "REAL",
+        "confidence": 0.00020350613340269774,
+        "is_correct": false
+      },
+      {
+        "file": "fake_1000.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "REAL",
+        "confidence": 0.008420072495937347,
+        "is_correct": false
+      },
+      {
+        "file": "fake_1001.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 0.9999269247055054,
+        "is_correct": true
+      },
+      {
+        "file": "fake_1002.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "REAL",
+        "confidence": 0.4701424539089203,
+        "is_correct": false
+      },
+      {
+        "file": "fake_1003.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "REAL",
+        "confidence": 0.01688775233924389,
+        "is_correct": false
+      },
+      {
+        "file": "fake_1004.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "REAL",
+        "confidence": 0.0174048263579607,
+        "is_correct": false
+      },
+      {
+        "file": "fake_1005.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 0.6156470775604248,
+        "is_correct": true
+      },
+      {
+        "file": "fake_1006.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "REAL",
+        "confidence": 7.350983651122078e-05,
+        "is_correct": false
+      },
+      {
+        "file": "fake_1007.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "REAL",
+        "confidence": 0.0007362965843640268,
+        "is_correct": false
+      },
+      {
+        "file": "fake_1008.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "REAL",
+        "confidence": 0.0019856770522892475,
+        "is_correct": false
+      },
+      {
+        "file": "fake_1009.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "REAL",
+        "confidence": 0.03834531828761101,
+        "is_correct": false
+      },
+      {
+        "file": "fake_101.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 0.6794538497924805,
+        "is_correct": true
+      },
+      {
+        "file": "fake_1010.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "REAL",
+        "confidence": 0.0014317005407065153,
+        "is_correct": false
+      },
+      {
+        "file": "fake_1011.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "REAL",
+        "confidence": 0.22089789807796478,
+        "is_correct": false
+      },
+      {
+        "file": "fake_1012.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 0.998594343662262,
+        "is_correct": true
+      },
+      {
+        "file": "fake_1013.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "REAL",
+        "confidence": 0.00027854248764924705,
+        "is_correct": false
+      },
+      {
+        "file": "fake_1014.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 1.0,
+        "is_correct": true
+      },
+      {
+        "file": "fake_1015.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "REAL",
+        "confidence": 0.000502617156598717,
+        "is_correct": false
+      },
+      {
+        "file": "fake_1016.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "REAL",
+        "confidence": 0.0057897684164345264,
+        "is_correct": false
+      },
+      {
+        "file": "fake_1017.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "REAL",
+        "confidence": 0.3347403109073639,
+        "is_correct": false
+      },
+      {
+        "file": "fake_1018.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 0.9996390342712402,
+        "is_correct": true
+      },
+      {
+        "file": "fake_1019.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "REAL",
+        "confidence": 4.459436240722425e-05,
+        "is_correct": false
+      },
+      {
+        "file": "fake_102.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 0.9999582767486572,
+        "is_correct": true
+      },
+      {
+        "file": "fake_1020.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "REAL",
+        "confidence": 0.0010553422616794705,
+        "is_correct": false
+      },
+      {
+        "file": "fake_1021.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "REAL",
+        "confidence": 0.00037632978637702763,
+        "is_correct": false
+      },
+      {
+        "file": "fake_1022.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "REAL",
+        "confidence": 0.00011604176688706502,
+        "is_correct": false
+      },
+      {
+        "file": "fake_1023.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 0.8859377503395081,
+        "is_correct": true
+      },
+      {
+        "file": "fake_1024.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "REAL",
+        "confidence": 0.0021739841904491186,
+        "is_correct": false
+      },
+      {
+        "file": "fake_1025.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "REAL",
+        "confidence": 2.6966832592734136e-05,
+        "is_correct": false
+      },
+      {
+        "file": "fake_1026.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "REAL",
+        "confidence": 0.001891160849481821,
+        "is_correct": false
+      },
+      {
+        "file": "fake_1027.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "REAL",
+        "confidence": 8.198801515391096e-05,
+        "is_correct": false
+      },
+      {
+        "file": "fake_1028.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "REAL",
+        "confidence": 0.0007724403403699398,
+        "is_correct": false
+      },
+      {
+        "file": "fake_1029.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 0.9843564629554749,
+        "is_correct": true
+      },
+      {
+        "file": "fake_103.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 0.6655861735343933,
+        "is_correct": true
+      },
+      {
+        "file": "fake_1030.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "REAL",
+        "confidence": 1.7580179701326415e-05,
+        "is_correct": false
+      },
+      {
+        "file": "fake_1031.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "REAL",
+        "confidence": 0.00030764538678340614,
+        "is_correct": false
+      },
+      {
+        "file": "fake_1032.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "REAL",
+        "confidence": 0.00045049077016301453,
+        "is_correct": false
+      },
+      {
+        "file": "fake_1033.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "REAL",
+        "confidence": 0.0057372841984033585,
+        "is_correct": false
+      },
+      {
+        "file": "fake_1034.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 0.9803000688552856,
+        "is_correct": true
+      },
+      {
+        "file": "fake_1035.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 0.999953031539917,
+        "is_correct": true
+      },
+      {
+        "file": "fake_1036.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "REAL",
+        "confidence": 0.040100011974573135,
+        "is_correct": false
+      },
+      {
+        "file": "fake_1037.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 0.6442021727561951,
+        "is_correct": true
+      },
+      {
+        "file": "fake_1038.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 0.9998445510864258,
+        "is_correct": true
+      },
+      {
+        "file": "fake_1039.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "REAL",
+        "confidence": 5.530118505703285e-05,
+        "is_correct": false
+      },
+      {
+        "file": "fake_104.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 0.9887264370918274,
+        "is_correct": true
+      },
+      {
+        "file": "fake_1040.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "REAL",
+        "confidence": 0.11575578898191452,
+        "is_correct": false
+      },
+      {
+        "file": "fake_1041.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 0.6833617687225342,
+        "is_correct": true
+      },
+      {
+        "file": "fake_0.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "REAL",
+        "confidence": 0.0012587233213707805,
+        "is_correct": false
+      },
+      {
+        "file": "fake_1.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 0.997890293598175,
+        "is_correct": true
+      },
+      {
+        "file": "fake_10.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "REAL",
+        "confidence": 4.397110842546681e-06,
+        "is_correct": false
+      },
+      {
+        "file": "fake_100.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "REAL",
+        "confidence": 0.00018364180868957192,
+        "is_correct": false
+      },
+      {
+        "file": "fake_1000.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 0.7382929921150208,
+        "is_correct": true
+      },
+      {
+        "file": "fake_10000.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "REAL",
+        "confidence": 6.653868331341073e-05,
+        "is_correct": false
+      },
+      {
+        "file": "fake_10001.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "REAL",
+        "confidence": 0.005168934818357229,
+        "is_correct": false
+      },
+      {
+        "file": "fake_10002.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "REAL",
+        "confidence": 0.0016204525018110871,
+        "is_correct": false
+      },
+      {
+        "file": "fake_10003.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "REAL",
+        "confidence": 0.026035921648144722,
+        "is_correct": false
+      },
+      {
+        "file": "fake_10004.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "REAL",
+        "confidence": 0.0003162116336170584,
+        "is_correct": false
+      },
+      {
+        "file": "fake_10005.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "REAL",
+        "confidence": 0.00030739002977497876,
+        "is_correct": false
+      },
+      {
+        "file": "fake_10006.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "REAL",
+        "confidence": 3.999810724053532e-05,
+        "is_correct": false
+      },
+      {
+        "file": "fake_10007.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "REAL",
+        "confidence": 0.22344271838665009,
+        "is_correct": false
+      },
+      {
+        "file": "fake_10008.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 0.8437557816505432,
+        "is_correct": true
+      },
+      {
+        "file": "fake_10009.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "REAL",
+        "confidence": 0.001687376294285059,
+        "is_correct": false
+      },
+      {
+        "file": "fake_1001.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "REAL",
+        "confidence": 6.69105356791988e-05,
+        "is_correct": false
+      },
+      {
+        "file": "fake_10010.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "REAL",
+        "confidence": 0.0016519937198609114,
+        "is_correct": false
+      },
+      {
+        "file": "fake_10011.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "REAL",
+        "confidence": 0.00020807384862564504,
+        "is_correct": false
+      },
+      {
+        "file": "fake_10012.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "REAL",
+        "confidence": 0.00040419373544864357,
+        "is_correct": false
+      },
+      {
+        "file": "fake_10013.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 0.89691561460495,
+        "is_correct": true
+      },
+      {
+        "file": "fake_10014.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "REAL",
+        "confidence": 0.002167788799852133,
+        "is_correct": false
+      },
+      {
+        "file": "fake_10015.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "REAL",
+        "confidence": 0.01074960920959711,
+        "is_correct": false
+      },
+      {
+        "file": "fake_10016.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "REAL",
+        "confidence": 0.001350158010609448,
+        "is_correct": false
+      },
+      {
+        "file": "fake_10017.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "REAL",
+        "confidence": 0.003252543741837144,
+        "is_correct": false
+      },
+      {
+        "file": "fake_10018.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "REAL",
+        "confidence": 3.962509799748659e-05,
+        "is_correct": false
+      },
+      {
+        "file": "fake_10019.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "REAL",
+        "confidence": 0.007057243026793003,
+        "is_correct": false
+      },
+      {
+        "file": "fake_1002.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 0.9999692440032959,
+        "is_correct": true
+      },
+      {
+        "file": "fake_10020.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "REAL",
+        "confidence": 0.06699453294277191,
+        "is_correct": false
+      },
+      {
+        "file": "fake_10021.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "REAL",
+        "confidence": 0.027036938816308975,
+        "is_correct": false
+      },
+      {
+        "file": "fake_10022.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "REAL",
+        "confidence": 0.0012701402883976698,
+        "is_correct": false
+      },
+      {
+        "file": "fake_10023.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "REAL",
+        "confidence": 0.02026401273906231,
+        "is_correct": false
+      },
+      {
+        "file": "fake_10024.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "REAL",
+        "confidence": 0.0008326885290443897,
+        "is_correct": false
+      },
+      {
+        "file": "fake_10025.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "REAL",
+        "confidence": 0.015829775482416153,
+        "is_correct": false
+      },
+      {
+        "file": "fake_10026.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "REAL",
+        "confidence": 4.1550869354978204e-05,
+        "is_correct": false
+      },
+      {
+        "file": "fake_10027.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "REAL",
+        "confidence": 5.193116521695629e-05,
+        "is_correct": false
+      },
+      {
+        "file": "fake_10028.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "REAL",
+        "confidence": 0.002554883947595954,
+        "is_correct": false
+      },
+      {
+        "file": "fake_10029.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 1.0,
+        "is_correct": true
+      },
+      {
+        "file": "fake_1003.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 0.9953622221946716,
+        "is_correct": true
+      },
+      {
+        "file": "fake_10030.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "REAL",
+        "confidence": 0.0006908192299306393,
+        "is_correct": false
+      },
+      {
+        "file": "fake_10031.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "REAL",
+        "confidence": 0.0052947853691875935,
+        "is_correct": false
+      },
+      {
+        "file": "fake_10032.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "REAL",
+        "confidence": 0.00029295778949745,
+        "is_correct": false
+      },
+      {
+        "file": "fake_10033.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "REAL",
+        "confidence": 0.21068312227725983,
+        "is_correct": false
+      },
+      {
+        "file": "fake_10034.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "DEEPFAKE",
+        "confidence": 0.9400823712348938,
+        "is_correct": true
+      },
+      {
+        "file": "fake_10035.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "REAL",
+        "confidence": 0.1134033128619194,
+        "is_correct": false
+      },
+      {
+        "file": "fake_10036.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "REAL",
+        "confidence": 0.4411531388759613,
+        "is_correct": false
+      },
+      {
+        "file": "fake_10037.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "REAL",
+        "confidence": 0.010673251003026962,
+        "is_correct": false
+      },
+      {
+        "file": "fake_10038.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "REAL",
+        "confidence": 0.009222375229001045,
+        "is_correct": false
+      },
+      {
+        "file": "fake_10039.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "REAL",
+        "confidence": 5.298015821608715e-05,
+        "is_correct": false
+      },
+      {
+        "file": "fake_1004.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "REAL",
+        "confidence": 0.0016993442550301552,
+        "is_correct": false
+      },
+      {
+        "file": "fake_10040.jpg",
+        "true_label": "DEEPFAKE",
+        "predicted_label": "REAL",
+        "confidence": 0.0005809288122691214,
+        "is_correct": false
+      }
+    ]
+  },
+  "misclassified": [
+    {
+      "file": "real_100.jpg",
+      "class": "Real",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Test\\Real\\real_100.jpg",
+      "true": "REAL",
+      "predicted": "DEEPFAKE",
+      "confidence": 1.0
+    },
+    {
+      "file": "real_1001.jpg",
+      "class": "Real",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Test\\Real\\real_1001.jpg",
+      "true": "REAL",
+      "predicted": "DEEPFAKE",
+      "confidence": 0.7792255878448486
+    },
+    {
+      "file": "real_1009.jpg",
+      "class": "Real",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Test\\Real\\real_1009.jpg",
+      "true": "REAL",
+      "predicted": "DEEPFAKE",
+      "confidence": 0.9892298579216003
+    },
+    {
+      "file": "real_101.jpg",
+      "class": "Real",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Test\\Real\\real_101.jpg",
+      "true": "REAL",
+      "predicted": "DEEPFAKE",
+      "confidence": 0.9999979734420776
+    },
+    {
+      "file": "real_1010.jpg",
+      "class": "Real",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Test\\Real\\real_1010.jpg",
+      "true": "REAL",
+      "predicted": "DEEPFAKE",
+      "confidence": 0.9160715937614441
+    },
+    {
+      "file": "real_1011.jpg",
+      "class": "Real",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Test\\Real\\real_1011.jpg",
+      "true": "REAL",
+      "predicted": "DEEPFAKE",
+      "confidence": 0.5908464193344116
+    },
+    {
+      "file": "real_1016.jpg",
+      "class": "Real",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Test\\Real\\real_1016.jpg",
+      "true": "REAL",
+      "predicted": "DEEPFAKE",
+      "confidence": 0.9895899891853333
+    },
+    {
+      "file": "real_1017.jpg",
+      "class": "Real",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Test\\Real\\real_1017.jpg",
+      "true": "REAL",
+      "predicted": "DEEPFAKE",
+      "confidence": 0.9238914251327515
+    },
+    {
+      "file": "real_102.jpg",
+      "class": "Real",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Test\\Real\\real_102.jpg",
+      "true": "REAL",
+      "predicted": "DEEPFAKE",
+      "confidence": 1.0
+    },
+    {
+      "file": "real_1021.jpg",
+      "class": "Real",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Test\\Real\\real_1021.jpg",
+      "true": "REAL",
+      "predicted": "DEEPFAKE",
+      "confidence": 0.9460086822509766
+    },
+    {
+      "file": "real_1024.jpg",
+      "class": "Real",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Test\\Real\\real_1024.jpg",
+      "true": "REAL",
+      "predicted": "DEEPFAKE",
+      "confidence": 1.0
+    },
+    {
+      "file": "real_1026.jpg",
+      "class": "Real",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Test\\Real\\real_1026.jpg",
+      "true": "REAL",
+      "predicted": "DEEPFAKE",
+      "confidence": 0.8417460322380066
+    },
+    {
+      "file": "real_1027.jpg",
+      "class": "Real",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Test\\Real\\real_1027.jpg",
+      "true": "REAL",
+      "predicted": "DEEPFAKE",
+      "confidence": 0.9808951020240784
+    },
+    {
+      "file": "real_1028.jpg",
+      "class": "Real",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Test\\Real\\real_1028.jpg",
+      "true": "REAL",
+      "predicted": "DEEPFAKE",
+      "confidence": 0.5245423316955566
+    },
+    {
+      "file": "real_103.jpg",
+      "class": "Real",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Test\\Real\\real_103.jpg",
+      "true": "REAL",
+      "predicted": "DEEPFAKE",
+      "confidence": 1.0
+    },
+    {
+      "file": "real_1030.jpg",
+      "class": "Real",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Test\\Real\\real_1030.jpg",
+      "true": "REAL",
+      "predicted": "DEEPFAKE",
+      "confidence": 0.9999964237213135
+    },
+    {
+      "file": "real_1031.jpg",
+      "class": "Real",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Test\\Real\\real_1031.jpg",
+      "true": "REAL",
+      "predicted": "DEEPFAKE",
+      "confidence": 0.9522566795349121
+    },
+    {
+      "file": "real_1032.jpg",
+      "class": "Real",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Test\\Real\\real_1032.jpg",
+      "true": "REAL",
+      "predicted": "DEEPFAKE",
+      "confidence": 1.0
+    },
+    {
+      "file": "real_1036.jpg",
+      "class": "Real",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Test\\Real\\real_1036.jpg",
+      "true": "REAL",
+      "predicted": "DEEPFAKE",
+      "confidence": 0.9420039057731628
+    },
+    {
+      "file": "real_1037.jpg",
+      "class": "Real",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Test\\Real\\real_1037.jpg",
+      "true": "REAL",
+      "predicted": "DEEPFAKE",
+      "confidence": 0.8521313071250916
+    },
+    {
+      "file": "real_1038.jpg",
+      "class": "Real",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Test\\Real\\real_1038.jpg",
+      "true": "REAL",
+      "predicted": "DEEPFAKE",
+      "confidence": 0.8281609416007996
+    },
+    {
+      "file": "real_1039.jpg",
+      "class": "Real",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Test\\Real\\real_1039.jpg",
+      "true": "REAL",
+      "predicted": "DEEPFAKE",
+      "confidence": 0.7696523666381836
+    },
+    {
+      "file": "real_104.jpg",
+      "class": "Real",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Test\\Real\\real_104.jpg",
+      "true": "REAL",
+      "predicted": "DEEPFAKE",
+      "confidence": 0.999997615814209
+    },
+    {
+      "file": "real_1041.jpg",
+      "class": "Real",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Test\\Real\\real_1041.jpg",
+      "true": "REAL",
+      "predicted": "DEEPFAKE",
+      "confidence": 0.9706870913505554
+    },
+    {
+      "file": "fake_0.jpg",
+      "class": "Fake",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Test\\Fake\\fake_0.jpg",
+      "true": "DEEPFAKE",
+      "predicted": "REAL",
+      "confidence": 0.07105432450771332
+    },
+    {
+      "file": "fake_1.jpg",
+      "class": "Fake",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Test\\Fake\\fake_1.jpg",
+      "true": "DEEPFAKE",
+      "predicted": "REAL",
+      "confidence": 0.0056145149283111095
+    },
+    {
+      "file": "fake_10.jpg",
+      "class": "Fake",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Test\\Fake\\fake_10.jpg",
+      "true": "DEEPFAKE",
+      "predicted": "REAL",
+      "confidence": 0.00071241136174649
+    },
+    {
+      "file": "fake_100.jpg",
+      "class": "Fake",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Test\\Fake\\fake_100.jpg",
+      "true": "DEEPFAKE",
+      "predicted": "REAL",
+      "confidence": 0.00020350613340269774
+    },
+    {
+      "file": "fake_1000.jpg",
+      "class": "Fake",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Test\\Fake\\fake_1000.jpg",
+      "true": "DEEPFAKE",
+      "predicted": "REAL",
+      "confidence": 0.008420072495937347
+    },
+    {
+      "file": "fake_1002.jpg",
+      "class": "Fake",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Test\\Fake\\fake_1002.jpg",
+      "true": "DEEPFAKE",
+      "predicted": "REAL",
+      "confidence": 0.4701424539089203
+    },
+    {
+      "file": "fake_1003.jpg",
+      "class": "Fake",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Test\\Fake\\fake_1003.jpg",
+      "true": "DEEPFAKE",
+      "predicted": "REAL",
+      "confidence": 0.01688775233924389
+    },
+    {
+      "file": "fake_1004.jpg",
+      "class": "Fake",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Test\\Fake\\fake_1004.jpg",
+      "true": "DEEPFAKE",
+      "predicted": "REAL",
+      "confidence": 0.0174048263579607
+    },
+    {
+      "file": "fake_1006.jpg",
+      "class": "Fake",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Test\\Fake\\fake_1006.jpg",
+      "true": "DEEPFAKE",
+      "predicted": "REAL",
+      "confidence": 7.350983651122078e-05
+    },
+    {
+      "file": "fake_1007.jpg",
+      "class": "Fake",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Test\\Fake\\fake_1007.jpg",
+      "true": "DEEPFAKE",
+      "predicted": "REAL",
+      "confidence": 0.0007362965843640268
+    },
+    {
+      "file": "fake_1008.jpg",
+      "class": "Fake",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Test\\Fake\\fake_1008.jpg",
+      "true": "DEEPFAKE",
+      "predicted": "REAL",
+      "confidence": 0.0019856770522892475
+    },
+    {
+      "file": "fake_1009.jpg",
+      "class": "Fake",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Test\\Fake\\fake_1009.jpg",
+      "true": "DEEPFAKE",
+      "predicted": "REAL",
+      "confidence": 0.03834531828761101
+    },
+    {
+      "file": "fake_1010.jpg",
+      "class": "Fake",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Test\\Fake\\fake_1010.jpg",
+      "true": "DEEPFAKE",
+      "predicted": "REAL",
+      "confidence": 0.0014317005407065153
+    },
+    {
+      "file": "fake_1011.jpg",
+      "class": "Fake",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Test\\Fake\\fake_1011.jpg",
+      "true": "DEEPFAKE",
+      "predicted": "REAL",
+      "confidence": 0.22089789807796478
+    },
+    {
+      "file": "fake_1013.jpg",
+      "class": "Fake",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Test\\Fake\\fake_1013.jpg",
+      "true": "DEEPFAKE",
+      "predicted": "REAL",
+      "confidence": 0.00027854248764924705
+    },
+    {
+      "file": "fake_1015.jpg",
+      "class": "Fake",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Test\\Fake\\fake_1015.jpg",
+      "true": "DEEPFAKE",
+      "predicted": "REAL",
+      "confidence": 0.000502617156598717
+    },
+    {
+      "file": "fake_1016.jpg",
+      "class": "Fake",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Test\\Fake\\fake_1016.jpg",
+      "true": "DEEPFAKE",
+      "predicted": "REAL",
+      "confidence": 0.0057897684164345264
+    },
+    {
+      "file": "fake_1017.jpg",
+      "class": "Fake",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Test\\Fake\\fake_1017.jpg",
+      "true": "DEEPFAKE",
+      "predicted": "REAL",
+      "confidence": 0.3347403109073639
+    },
+    {
+      "file": "fake_1019.jpg",
+      "class": "Fake",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Test\\Fake\\fake_1019.jpg",
+      "true": "DEEPFAKE",
+      "predicted": "REAL",
+      "confidence": 4.459436240722425e-05
+    },
+    {
+      "file": "fake_1020.jpg",
+      "class": "Fake",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Test\\Fake\\fake_1020.jpg",
+      "true": "DEEPFAKE",
+      "predicted": "REAL",
+      "confidence": 0.0010553422616794705
+    },
+    {
+      "file": "fake_1021.jpg",
+      "class": "Fake",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Test\\Fake\\fake_1021.jpg",
+      "true": "DEEPFAKE",
+      "predicted": "REAL",
+      "confidence": 0.00037632978637702763
+    },
+    {
+      "file": "fake_1022.jpg",
+      "class": "Fake",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Test\\Fake\\fake_1022.jpg",
+      "true": "DEEPFAKE",
+      "predicted": "REAL",
+      "confidence": 0.00011604176688706502
+    },
+    {
+      "file": "fake_1024.jpg",
+      "class": "Fake",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Test\\Fake\\fake_1024.jpg",
+      "true": "DEEPFAKE",
+      "predicted": "REAL",
+      "confidence": 0.0021739841904491186
+    },
+    {
+      "file": "fake_1025.jpg",
+      "class": "Fake",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Test\\Fake\\fake_1025.jpg",
+      "true": "DEEPFAKE",
+      "predicted": "REAL",
+      "confidence": 2.6966832592734136e-05
+    },
+    {
+      "file": "fake_1026.jpg",
+      "class": "Fake",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Test\\Fake\\fake_1026.jpg",
+      "true": "DEEPFAKE",
+      "predicted": "REAL",
+      "confidence": 0.001891160849481821
+    },
+    {
+      "file": "fake_1027.jpg",
+      "class": "Fake",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Test\\Fake\\fake_1027.jpg",
+      "true": "DEEPFAKE",
+      "predicted": "REAL",
+      "confidence": 8.198801515391096e-05
+    },
+    {
+      "file": "fake_1028.jpg",
+      "class": "Fake",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Test\\Fake\\fake_1028.jpg",
+      "true": "DEEPFAKE",
+      "predicted": "REAL",
+      "confidence": 0.0007724403403699398
+    },
+    {
+      "file": "fake_1030.jpg",
+      "class": "Fake",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Test\\Fake\\fake_1030.jpg",
+      "true": "DEEPFAKE",
+      "predicted": "REAL",
+      "confidence": 1.7580179701326415e-05
+    },
+    {
+      "file": "fake_1031.jpg",
+      "class": "Fake",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Test\\Fake\\fake_1031.jpg",
+      "true": "DEEPFAKE",
+      "predicted": "REAL",
+      "confidence": 0.00030764538678340614
+    },
+    {
+      "file": "fake_1032.jpg",
+      "class": "Fake",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Test\\Fake\\fake_1032.jpg",
+      "true": "DEEPFAKE",
+      "predicted": "REAL",
+      "confidence": 0.00045049077016301453
+    },
+    {
+      "file": "fake_1033.jpg",
+      "class": "Fake",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Test\\Fake\\fake_1033.jpg",
+      "true": "DEEPFAKE",
+      "predicted": "REAL",
+      "confidence": 0.0057372841984033585
+    },
+    {
+      "file": "fake_1036.jpg",
+      "class": "Fake",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Test\\Fake\\fake_1036.jpg",
+      "true": "DEEPFAKE",
+      "predicted": "REAL",
+      "confidence": 0.040100011974573135
+    },
+    {
+      "file": "fake_1039.jpg",
+      "class": "Fake",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Test\\Fake\\fake_1039.jpg",
+      "true": "DEEPFAKE",
+      "predicted": "REAL",
+      "confidence": 5.530118505703285e-05
+    },
+    {
+      "file": "fake_1040.jpg",
+      "class": "Fake",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Test\\Fake\\fake_1040.jpg",
+      "true": "DEEPFAKE",
+      "predicted": "REAL",
+      "confidence": 0.11575578898191452
+    },
+    {
+      "file": "real_0.jpg",
+      "class": "Real",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Validation\\Real\\real_0.jpg",
+      "true": "REAL",
+      "predicted": "DEEPFAKE",
+      "confidence": 0.9964656829833984
+    },
+    {
+      "file": "real_1.jpg",
+      "class": "Real",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Validation\\Real\\real_1.jpg",
+      "true": "REAL",
+      "predicted": "DEEPFAKE",
+      "confidence": 0.9941651225090027
+    },
+    {
+      "file": "real_10.jpg",
+      "class": "Real",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Validation\\Real\\real_10.jpg",
+      "true": "REAL",
+      "predicted": "DEEPFAKE",
+      "confidence": 0.9999997615814209
+    },
+    {
+      "file": "real_100.jpg",
+      "class": "Real",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Validation\\Real\\real_100.jpg",
+      "true": "REAL",
+      "predicted": "DEEPFAKE",
+      "confidence": 1.0
+    },
+    {
+      "file": "real_1000.jpg",
+      "class": "Real",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Validation\\Real\\real_1000.jpg",
+      "true": "REAL",
+      "predicted": "DEEPFAKE",
+      "confidence": 0.9992051720619202
+    },
+    {
+      "file": "real_10001.jpg",
+      "class": "Real",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Validation\\Real\\real_10001.jpg",
+      "true": "REAL",
+      "predicted": "DEEPFAKE",
+      "confidence": 0.999596893787384
+    },
+    {
+      "file": "real_10002.jpg",
+      "class": "Real",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Validation\\Real\\real_10002.jpg",
+      "true": "REAL",
+      "predicted": "DEEPFAKE",
+      "confidence": 0.998588502407074
+    },
+    {
+      "file": "real_10003.jpg",
+      "class": "Real",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Validation\\Real\\real_10003.jpg",
+      "true": "REAL",
+      "predicted": "DEEPFAKE",
+      "confidence": 0.9999812841415405
+    },
+    {
+      "file": "real_10004.jpg",
+      "class": "Real",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Validation\\Real\\real_10004.jpg",
+      "true": "REAL",
+      "predicted": "DEEPFAKE",
+      "confidence": 0.9969072937965393
+    },
+    {
+      "file": "real_10006.jpg",
+      "class": "Real",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Validation\\Real\\real_10006.jpg",
+      "true": "REAL",
+      "predicted": "DEEPFAKE",
+      "confidence": 0.998374342918396
+    },
+    {
+      "file": "real_10007.jpg",
+      "class": "Real",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Validation\\Real\\real_10007.jpg",
+      "true": "REAL",
+      "predicted": "DEEPFAKE",
+      "confidence": 0.9999998807907104
+    },
+    {
+      "file": "real_10008.jpg",
+      "class": "Real",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Validation\\Real\\real_10008.jpg",
+      "true": "REAL",
+      "predicted": "DEEPFAKE",
+      "confidence": 0.9999935626983643
+    },
+    {
+      "file": "real_10009.jpg",
+      "class": "Real",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Validation\\Real\\real_10009.jpg",
+      "true": "REAL",
+      "predicted": "DEEPFAKE",
+      "confidence": 0.9990817308425903
+    },
+    {
+      "file": "real_1001.jpg",
+      "class": "Real",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Validation\\Real\\real_1001.jpg",
+      "true": "REAL",
+      "predicted": "DEEPFAKE",
+      "confidence": 0.58226078748703
+    },
+    {
+      "file": "real_10010.jpg",
+      "class": "Real",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Validation\\Real\\real_10010.jpg",
+      "true": "REAL",
+      "predicted": "DEEPFAKE",
+      "confidence": 0.9425987005233765
+    },
+    {
+      "file": "real_10016.jpg",
+      "class": "Real",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Validation\\Real\\real_10016.jpg",
+      "true": "REAL",
+      "predicted": "DEEPFAKE",
+      "confidence": 0.8813799023628235
+    },
+    {
+      "file": "real_10017.jpg",
+      "class": "Real",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Validation\\Real\\real_10017.jpg",
+      "true": "REAL",
+      "predicted": "DEEPFAKE",
+      "confidence": 0.9999991655349731
+    },
+    {
+      "file": "real_10018.jpg",
+      "class": "Real",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Validation\\Real\\real_10018.jpg",
+      "true": "REAL",
+      "predicted": "DEEPFAKE",
+      "confidence": 0.9985352754592896
+    },
+    {
+      "file": "real_10020.jpg",
+      "class": "Real",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Validation\\Real\\real_10020.jpg",
+      "true": "REAL",
+      "predicted": "DEEPFAKE",
+      "confidence": 0.999805748462677
+    },
+    {
+      "file": "real_10021.jpg",
+      "class": "Real",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Validation\\Real\\real_10021.jpg",
+      "true": "REAL",
+      "predicted": "DEEPFAKE",
+      "confidence": 0.9999955892562866
+    },
+    {
+      "file": "real_10022.jpg",
+      "class": "Real",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Validation\\Real\\real_10022.jpg",
+      "true": "REAL",
+      "predicted": "DEEPFAKE",
+      "confidence": 0.9999995231628418
+    },
+    {
+      "file": "real_10023.jpg",
+      "class": "Real",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Validation\\Real\\real_10023.jpg",
+      "true": "REAL",
+      "predicted": "DEEPFAKE",
+      "confidence": 1.0
+    },
+    {
+      "file": "real_10024.jpg",
+      "class": "Real",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Validation\\Real\\real_10024.jpg",
+      "true": "REAL",
+      "predicted": "DEEPFAKE",
+      "confidence": 1.0
+    },
+    {
+      "file": "real_10025.jpg",
+      "class": "Real",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Validation\\Real\\real_10025.jpg",
+      "true": "REAL",
+      "predicted": "DEEPFAKE",
+      "confidence": 0.9999992847442627
+    },
+    {
+      "file": "real_10031.jpg",
+      "class": "Real",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Validation\\Real\\real_10031.jpg",
+      "true": "REAL",
+      "predicted": "DEEPFAKE",
+      "confidence": 0.7890942692756653
+    },
+    {
+      "file": "real_10032.jpg",
+      "class": "Real",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Validation\\Real\\real_10032.jpg",
+      "true": "REAL",
+      "predicted": "DEEPFAKE",
+      "confidence": 0.6533828973770142
+    },
+    {
+      "file": "real_10036.jpg",
+      "class": "Real",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Validation\\Real\\real_10036.jpg",
+      "true": "REAL",
+      "predicted": "DEEPFAKE",
+      "confidence": 0.9997900128364563
+    },
+    {
+      "file": "real_10037.jpg",
+      "class": "Real",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Validation\\Real\\real_10037.jpg",
+      "true": "REAL",
+      "predicted": "DEEPFAKE",
+      "confidence": 0.9975903034210205
+    },
+    {
+      "file": "real_10038.jpg",
+      "class": "Real",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Validation\\Real\\real_10038.jpg",
+      "true": "REAL",
+      "predicted": "DEEPFAKE",
+      "confidence": 1.0
+    },
+    {
+      "file": "real_10039.jpg",
+      "class": "Real",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Validation\\Real\\real_10039.jpg",
+      "true": "REAL",
+      "predicted": "DEEPFAKE",
+      "confidence": 0.9182882308959961
+    },
+    {
+      "file": "fake_0.jpg",
+      "class": "Fake",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Validation\\Fake\\fake_0.jpg",
+      "true": "DEEPFAKE",
+      "predicted": "REAL",
+      "confidence": 0.0012587233213707805
+    },
+    {
+      "file": "fake_10.jpg",
+      "class": "Fake",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Validation\\Fake\\fake_10.jpg",
+      "true": "DEEPFAKE",
+      "predicted": "REAL",
+      "confidence": 4.397110842546681e-06
+    },
+    {
+      "file": "fake_100.jpg",
+      "class": "Fake",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Validation\\Fake\\fake_100.jpg",
+      "true": "DEEPFAKE",
+      "predicted": "REAL",
+      "confidence": 0.00018364180868957192
+    },
+    {
+      "file": "fake_10000.jpg",
+      "class": "Fake",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Validation\\Fake\\fake_10000.jpg",
+      "true": "DEEPFAKE",
+      "predicted": "REAL",
+      "confidence": 6.653868331341073e-05
+    },
+    {
+      "file": "fake_10001.jpg",
+      "class": "Fake",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Validation\\Fake\\fake_10001.jpg",
+      "true": "DEEPFAKE",
+      "predicted": "REAL",
+      "confidence": 0.005168934818357229
+    },
+    {
+      "file": "fake_10002.jpg",
+      "class": "Fake",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Validation\\Fake\\fake_10002.jpg",
+      "true": "DEEPFAKE",
+      "predicted": "REAL",
+      "confidence": 0.0016204525018110871
+    },
+    {
+      "file": "fake_10003.jpg",
+      "class": "Fake",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Validation\\Fake\\fake_10003.jpg",
+      "true": "DEEPFAKE",
+      "predicted": "REAL",
+      "confidence": 0.026035921648144722
+    },
+    {
+      "file": "fake_10004.jpg",
+      "class": "Fake",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Validation\\Fake\\fake_10004.jpg",
+      "true": "DEEPFAKE",
+      "predicted": "REAL",
+      "confidence": 0.0003162116336170584
+    },
+    {
+      "file": "fake_10005.jpg",
+      "class": "Fake",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Validation\\Fake\\fake_10005.jpg",
+      "true": "DEEPFAKE",
+      "predicted": "REAL",
+      "confidence": 0.00030739002977497876
+    },
+    {
+      "file": "fake_10006.jpg",
+      "class": "Fake",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Validation\\Fake\\fake_10006.jpg",
+      "true": "DEEPFAKE",
+      "predicted": "REAL",
+      "confidence": 3.999810724053532e-05
+    },
+    {
+      "file": "fake_10007.jpg",
+      "class": "Fake",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Validation\\Fake\\fake_10007.jpg",
+      "true": "DEEPFAKE",
+      "predicted": "REAL",
+      "confidence": 0.22344271838665009
+    },
+    {
+      "file": "fake_10009.jpg",
+      "class": "Fake",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Validation\\Fake\\fake_10009.jpg",
+      "true": "DEEPFAKE",
+      "predicted": "REAL",
+      "confidence": 0.001687376294285059
+    },
+    {
+      "file": "fake_1001.jpg",
+      "class": "Fake",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Validation\\Fake\\fake_1001.jpg",
+      "true": "DEEPFAKE",
+      "predicted": "REAL",
+      "confidence": 6.69105356791988e-05
+    },
+    {
+      "file": "fake_10010.jpg",
+      "class": "Fake",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Validation\\Fake\\fake_10010.jpg",
+      "true": "DEEPFAKE",
+      "predicted": "REAL",
+      "confidence": 0.0016519937198609114
+    },
+    {
+      "file": "fake_10011.jpg",
+      "class": "Fake",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Validation\\Fake\\fake_10011.jpg",
+      "true": "DEEPFAKE",
+      "predicted": "REAL",
+      "confidence": 0.00020807384862564504
+    },
+    {
+      "file": "fake_10012.jpg",
+      "class": "Fake",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Validation\\Fake\\fake_10012.jpg",
+      "true": "DEEPFAKE",
+      "predicted": "REAL",
+      "confidence": 0.00040419373544864357
+    },
+    {
+      "file": "fake_10014.jpg",
+      "class": "Fake",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Validation\\Fake\\fake_10014.jpg",
+      "true": "DEEPFAKE",
+      "predicted": "REAL",
+      "confidence": 0.002167788799852133
+    },
+    {
+      "file": "fake_10015.jpg",
+      "class": "Fake",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Validation\\Fake\\fake_10015.jpg",
+      "true": "DEEPFAKE",
+      "predicted": "REAL",
+      "confidence": 0.01074960920959711
+    },
+    {
+      "file": "fake_10016.jpg",
+      "class": "Fake",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Validation\\Fake\\fake_10016.jpg",
+      "true": "DEEPFAKE",
+      "predicted": "REAL",
+      "confidence": 0.001350158010609448
+    },
+    {
+      "file": "fake_10017.jpg",
+      "class": "Fake",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Validation\\Fake\\fake_10017.jpg",
+      "true": "DEEPFAKE",
+      "predicted": "REAL",
+      "confidence": 0.003252543741837144
+    },
+    {
+      "file": "fake_10018.jpg",
+      "class": "Fake",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Validation\\Fake\\fake_10018.jpg",
+      "true": "DEEPFAKE",
+      "predicted": "REAL",
+      "confidence": 3.962509799748659e-05
+    },
+    {
+      "file": "fake_10019.jpg",
+      "class": "Fake",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Validation\\Fake\\fake_10019.jpg",
+      "true": "DEEPFAKE",
+      "predicted": "REAL",
+      "confidence": 0.007057243026793003
+    },
+    {
+      "file": "fake_10020.jpg",
+      "class": "Fake",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Validation\\Fake\\fake_10020.jpg",
+      "true": "DEEPFAKE",
+      "predicted": "REAL",
+      "confidence": 0.06699453294277191
+    },
+    {
+      "file": "fake_10021.jpg",
+      "class": "Fake",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Validation\\Fake\\fake_10021.jpg",
+      "true": "DEEPFAKE",
+      "predicted": "REAL",
+      "confidence": 0.027036938816308975
+    },
+    {
+      "file": "fake_10022.jpg",
+      "class": "Fake",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Validation\\Fake\\fake_10022.jpg",
+      "true": "DEEPFAKE",
+      "predicted": "REAL",
+      "confidence": 0.0012701402883976698
+    },
+    {
+      "file": "fake_10023.jpg",
+      "class": "Fake",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Validation\\Fake\\fake_10023.jpg",
+      "true": "DEEPFAKE",
+      "predicted": "REAL",
+      "confidence": 0.02026401273906231
+    },
+    {
+      "file": "fake_10024.jpg",
+      "class": "Fake",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Validation\\Fake\\fake_10024.jpg",
+      "true": "DEEPFAKE",
+      "predicted": "REAL",
+      "confidence": 0.0008326885290443897
+    },
+    {
+      "file": "fake_10025.jpg",
+      "class": "Fake",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Validation\\Fake\\fake_10025.jpg",
+      "true": "DEEPFAKE",
+      "predicted": "REAL",
+      "confidence": 0.015829775482416153
+    },
+    {
+      "file": "fake_10026.jpg",
+      "class": "Fake",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Validation\\Fake\\fake_10026.jpg",
+      "true": "DEEPFAKE",
+      "predicted": "REAL",
+      "confidence": 4.1550869354978204e-05
+    },
+    {
+      "file": "fake_10027.jpg",
+      "class": "Fake",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Validation\\Fake\\fake_10027.jpg",
+      "true": "DEEPFAKE",
+      "predicted": "REAL",
+      "confidence": 5.193116521695629e-05
+    },
+    {
+      "file": "fake_10028.jpg",
+      "class": "Fake",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Validation\\Fake\\fake_10028.jpg",
+      "true": "DEEPFAKE",
+      "predicted": "REAL",
+      "confidence": 0.002554883947595954
+    },
+    {
+      "file": "fake_10030.jpg",
+      "class": "Fake",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Validation\\Fake\\fake_10030.jpg",
+      "true": "DEEPFAKE",
+      "predicted": "REAL",
+      "confidence": 0.0006908192299306393
+    },
+    {
+      "file": "fake_10031.jpg",
+      "class": "Fake",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Validation\\Fake\\fake_10031.jpg",
+      "true": "DEEPFAKE",
+      "predicted": "REAL",
+      "confidence": 0.0052947853691875935
+    },
+    {
+      "file": "fake_10032.jpg",
+      "class": "Fake",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Validation\\Fake\\fake_10032.jpg",
+      "true": "DEEPFAKE",
+      "predicted": "REAL",
+      "confidence": 0.00029295778949745
+    },
+    {
+      "file": "fake_10033.jpg",
+      "class": "Fake",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Validation\\Fake\\fake_10033.jpg",
+      "true": "DEEPFAKE",
+      "predicted": "REAL",
+      "confidence": 0.21068312227725983
+    },
+    {
+      "file": "fake_10035.jpg",
+      "class": "Fake",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Validation\\Fake\\fake_10035.jpg",
+      "true": "DEEPFAKE",
+      "predicted": "REAL",
+      "confidence": 0.1134033128619194
+    },
+    {
+      "file": "fake_10036.jpg",
+      "class": "Fake",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Validation\\Fake\\fake_10036.jpg",
+      "true": "DEEPFAKE",
+      "predicted": "REAL",
+      "confidence": 0.4411531388759613
+    },
+    {
+      "file": "fake_10037.jpg",
+      "class": "Fake",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Validation\\Fake\\fake_10037.jpg",
+      "true": "DEEPFAKE",
+      "predicted": "REAL",
+      "confidence": 0.010673251003026962
+    },
+    {
+      "file": "fake_10038.jpg",
+      "class": "Fake",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Validation\\Fake\\fake_10038.jpg",
+      "true": "DEEPFAKE",
+      "predicted": "REAL",
+      "confidence": 0.009222375229001045
+    },
+    {
+      "file": "fake_10039.jpg",
+      "class": "Fake",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Validation\\Fake\\fake_10039.jpg",
+      "true": "DEEPFAKE",
+      "predicted": "REAL",
+      "confidence": 5.298015821608715e-05
+    },
+    {
+      "file": "fake_1004.jpg",
+      "class": "Fake",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Validation\\Fake\\fake_1004.jpg",
+      "true": "DEEPFAKE",
+      "predicted": "REAL",
+      "confidence": 0.0016993442550301552
+    },
+    {
+      "file": "fake_10040.jpg",
+      "class": "Fake",
+      "path": "C:\\Users\\Aafi\\Desktop\\Dataset\\Validation\\Fake\\fake_10040.jpg",
+      "true": "DEEPFAKE",
+      "predicted": "REAL",
+      "confidence": 0.0005809288122691214
+    }
+  ]
+}

@@ -12,7 +12,7 @@ def load_model(model_path, model_type='hybrid', device='cuda'):
         model = HybridDeepfakeDetector(num_classes=1, pretrained=False)
     else:
         model = DeepfakeEfficientNet(num_classes=1, pretrained=False)
-    model.load_state_dict(torch.load(model_path, map_location=device))
+    model.load_state_dict(torch.load(model_path, map_location="cpu"))
     model.eval()
     model.to(device)
     return model

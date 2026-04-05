@@ -8,20 +8,21 @@
 
 ## 📊 PROGRESS OVERVIEW
 
-| Phase | Task | Status | ETA |
-|-------|------|--------|-----|
-| **1** | Root cause analysis | ✅ Complete | - |
-| **2** | Fine-tuning training | 🔄 **RUNNING** | ~3-4 hrs |
-| **3** | Deploy fine-tuned model | ⏳ Ready | ~2 hrs after P2 |
-| **4** | Final documentation | ⏳ Ready | ~2 hrs |
-| **5** | Demo video | ⏳ Ready | ~1 hr |
-| **6** | Auth detection (bonus) | ⏳ If time | TBD |
+| Phase | Task                    | Status         | ETA             |
+| ----- | ----------------------- | -------------- | --------------- |
+| **1** | Root cause analysis     | ✅ Complete    | -               |
+| **2** | Fine-tuning training    | 🔄 **RUNNING** | ~3-4 hrs        |
+| **3** | Deploy fine-tuned model | ⏳ Ready       | ~2 hrs after P2 |
+| **4** | Final documentation     | ⏳ Ready       | ~2 hrs          |
+| **5** | Demo video              | ⏳ Ready       | ~1 hr           |
+| **6** | Auth detection (bonus)  | ⏳ If time     | TBD             |
 
 ---
 
 ## 🔧 WHAT WAS FIXED
 
 ### Problem Diagnosed
+
 - **Root Cause:** Severe domain shift - Model trained exclusively on FaceForensics++ (compressed, standardized video format) fails on real-world Kaggle images
 - **Evidence:** Cross-dataset testing showed clear degradation:
   - FaceForensics++: 95.65% accuracy ✅
@@ -31,19 +32,22 @@
 ### Recovery Implemented
 
 #### 1. **Infrastructure Created** ✅
+
 - `training/finetune_kaggle.py` - Transfer learning fine-tuning script
 - `data/dataset_kaggle.py` - Kaggle dataset loader
 - `backend/inference_enhancements.py` - TTA + calibration + quality filtering
 
 #### 2. **Windows Compatibility Fixed** ✅
+
 - **Problem:** Lambda functions can't be pickled for multiprocessing on Windows
-- **Solution:** 
+- **Solution:**
   - Replaced `T.Lambda` with custom `ResizeWithPad` class
   - Set `num_workers=0` for Windows training
   - Made `pin_memory` conditional on CUDA availability
 
 #### 3. **Image Preprocessing Improved** ✅
-- Changed from distortion-causing `T.Resize((224,224))` 
+
+- Changed from distortion-causing `T.Resize((224,224))`
 - To aspect-ratio-preserving `ResizeWithPad` with padding
 - Expected accuracy gain: 10-20% alone
 
@@ -58,6 +62,7 @@ Device: CPU (3-4 hour estimate)
 ```
 
 ### Training Config
+
 - **Epochs:** 10
 - **Batch Size:** 16
 - **Learning Rate:** 1e-5 (extremely conservative for domain adaptation)
@@ -67,6 +72,7 @@ Device: CPU (3-4 hour estimate)
 - **Best Model Saved:** `checkpoints/kaggle_finetune/best_kaggle.pt`
 
 ### Expected Results
+
 - **Training Accuracy:** Will improve from initial ~50% → 75-80%
 - **Validation Accuracy:** Target ≥70% on Kaggle domain
 - **Time to Completion:** 3-4 hours on CPU
@@ -76,6 +82,7 @@ Device: CPU (3-4 hour estimate)
 ## 📋 NEXT IMMEDIATE STEPS
 
 ### During Training (Now)
+
 ```
 ✓ Training running autonomously
 ✓ Check progress every 30-60 minutes
@@ -85,12 +92,15 @@ Device: CPU (3-4 hour estimate)
 ### After Training Completes (In ~3-4 hours)
 
 #### Phase 3: Deployment (Next 2 hours)
+
 1. Verify best model saved:
+
    ```bash
    ls checkpoints/kaggle_finetune/best_kaggle.pt
    ```
 
 2. Copy model to backend:
+
    ```bash
    cp checkpoints/kaggle_finetune/best_kaggle.pt backend/models/kaggle_best.pt
    ```
@@ -103,14 +113,17 @@ Device: CPU (3-4 hour estimate)
    ```bash
    python tests/test_kaggle_diagnostics.py
    ```
+
    - Expected: **70%+ accuracy on Kaggle test images** ✅
 
 #### Phase 4: Documentation & Demo (Next 3 hours)
+
 1. Update PROGRESS_REPORT.md with new metrics
 2. Create DOMAIN_SHIFT_ANALYSIS.md explaining problem & recovery
 3. Record demo video showing improved performance
 
 #### Phase 5: Optional Bonus (If time permits)
+
 - Implement AI-generation detector branch
 - Add tampering detection module
 
@@ -131,14 +144,14 @@ c89c774  fix: improve image preprocessing with aspect-ratio preservation
 
 ## ⏰ TIMELINE
 
-| Time | Milestone | Status |
-|------|-----------|--------|
-| Now | Training epoch 1/10 | 🔄 Running |
-| +3-4 hrs | Training completes, best model saved | ⏳ Coming |
-| +5-6 hrs | Phase 3: Model deployed | ⏳ Coming |
-| +7-8 hrs | Phase 4: Documentation ready | ⏳ Coming |
-| +8-9 hrs | Phase 5: Demo video recorded | ⏳ Coming |
-| April 20 | **SUBMISSION DEADLINE** | ✅ On track |
+| Time     | Milestone                            | Status      |
+| -------- | ------------------------------------ | ----------- |
+| Now      | Training epoch 1/10                  | 🔄 Running  |
+| +3-4 hrs | Training completes, best model saved | ⏳ Coming   |
+| +5-6 hrs | Phase 3: Model deployed              | ⏳ Coming   |
+| +7-8 hrs | Phase 4: Documentation ready         | ⏳ Coming   |
+| +8-9 hrs | Phase 5: Demo video recorded         | ⏳ Coming   |
+| April 20 | **SUBMISSION DEADLINE**              | ✅ On track |
 
 **Buffer Remaining:** 11-12 days (ample for refinement & bonus features)
 
@@ -170,6 +183,7 @@ c89c774  fix: improve image preprocessing with aspect-ratio preservation
 ```
 
 **Email/Notify if:**
+
 - Training stops with error
 - GPU memory issues (unlikely on CPU)
 - Accuracy stops improving after 5 epochs (early stopping will trigger)
@@ -196,4 +210,4 @@ c89c774  fix: improve image preprocessing with aspect-ratio preservation
 
 ---
 
-*Last Updated: April 5, 2026 - 14:32 UTC*
+_Last Updated: April 5, 2026 - 14:32 UTC_

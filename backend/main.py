@@ -14,6 +14,7 @@ from pydantic import BaseModel
 from typing import Optional, List
 from data.augmentations import get_val_transforms
 from evaluation.gradcam import load_model, generate_gradcam
+from backend.inference_enhancements import EnhancedPredictor, check_image_quality
 
 app = FastAPI(title="Deepfake Detection API", version="1.0.0")
 
@@ -26,6 +27,7 @@ app.add_middleware(
 
 # --- Global model state ---
 MODEL = None
+PREDICTOR = None  # Enhanced predictor with mitigations
 DEVICE = "cpu"
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 MODEL_PATH = os.path.join(BASE_DIR, "backend", "models", "hybrid_full_best.pt")
@@ -50,10 +52,15 @@ class VideoResponse(BaseModel):
 
 @app.on_event("startup")
 async def load_model_on_startup():
-    global MODEL
+    global MODEL, PREDICTOR
     print(f"Loading model from {MODEL_PATH} on {DEVICE}...")
     MODEL = load_model(MODEL_PATH, MODEL_TYPE, DEVICE)
-    print("Model loaded successfully.")
+    PREDICTOR = EnhancedPredictor(
+        MODEL, DEVICE,
+        use_tta=True,  # Enable test-time augmentation
+        use_quality_check=True  # Enable image quality filtering
+    )
+    print("Model and enhanced predictor loaded successfully.")
 
 @app.get("/health")
 async def health():
@@ -72,7 +79,12 @@ async def predict(file: UploadFile = File(...)):
 
     image_tensor = TRANSFORM(image).unsqueeze(0).to(DEVICE)
 
-    confidence, heatmap, is_fake = generate_gradcam(
+    # Use enhanced predictor with domain shift mitigations
+    is_fake, confidence, details = PREDICTOR.predict(
+        image_tensor, image, return_details=True
+    )
+
+    confidence, heatmap, _ = generate_gradcam(
         MODEL, image_tensor, MODEL_TYPE, DEVICE
     )
 
@@ -80,7 +92,7 @@ async def predict(file: UploadFile = File(...)):
     _, buffer = cv2.imencode('.jpg', heatmap_bgr)
     heatmap_b64 = base64.b64encode(buffer).decode('utf-8')
 
-    label = "DEEPFAKE" if is_fake else "REAL"
+    label = details['decision']
 
     return PredictionResponse(
         is_fake=is_fake,

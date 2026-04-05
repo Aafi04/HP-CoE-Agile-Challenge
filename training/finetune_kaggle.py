@@ -34,7 +34,7 @@ CONFIG = {
     'num_epochs': 10,
     'lr': 1e-5,  # VERY low learning rate for fine-tuning
     'weight_decay': 1e-4,
-    'num_workers': 4,
+    'num_workers': 0,  # Windows: set to 0 to avoid multiprocessing issues
     'device': 'cuda' if torch.cuda.is_available() else 'cpu',
     'checkpoint_dir': 'checkpoints/kaggle_finetune',
 }
@@ -136,14 +136,14 @@ def main(args):
         batch_size=CONFIG['batch_size'],
         shuffle=True,
         num_workers=CONFIG['num_workers'],
-        pin_memory=True
+        pin_memory=torch.cuda.is_available()  # Only pin memory if using GPU
     )
     val_loader = DataLoader(
         val_ds,
         batch_size=CONFIG['batch_size'],
         shuffle=False,
         num_workers=CONFIG['num_workers'],
-        pin_memory=True
+        pin_memory=torch.cuda.is_available()  # Only pin memory if using GPU
     )
     
     # Loss and optimizer

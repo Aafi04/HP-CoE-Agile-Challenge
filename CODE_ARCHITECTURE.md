@@ -2,6 +2,8 @@
 
 **Quick reference for key files, entry points, and how components connect.**
 
+**📌 GPU Reference:** See [`../GPU_SPECS.md`](../GPU_SPECS.md) for NVIDIA L4 specs, optimal batch size, and setup commands (keep outside Git repo)
+
 ---
 
 ## PROJECT STRUCTURE
@@ -48,6 +50,7 @@ AI-Based-Image-Authenticity-and-Deepfake-Detection-Tool/
 ### Entry Point: `training/finetune_kaggle.py`
 
 **What it does:**
+
 1. Loads HybridDeepfakeDetector from `backend/models/hybrid_model.py`
 2. Loads pre-trained weights from `backend/models/hybrid_full_best.pt`
 3. Loads Kaggle dataset from `data/dataset_kaggle.py`
@@ -55,6 +58,7 @@ AI-Based-Image-Authenticity-and-Deepfake-Detection-Tool/
 5. Saves best model to `checkpoints/kaggle_finetune/best_kaggle.pt`
 
 **Key config (lines ~30-40):**
+
 ```python
 CONFIG = {
     'lr': 1e-5,          # Very low for domain adaptation
@@ -66,11 +70,13 @@ CONFIG = {
 ```
 
 **Dataset path (line ~XX):**
+
 ```python
 data_root = "C:\Users\Aafi\Desktop\Dataset"  # ← Update for college system
 ```
 
 **Run command:**
+
 ```bash
 python training/finetune_kaggle.py --data_root /path/to/Dataset
 ```
@@ -82,6 +88,7 @@ python training/finetune_kaggle.py --data_root /path/to/Dataset
 ### HybridDeepfakeDetector (`backend/models/hybrid_model.py`)
 
 **Architecture:**
+
 ```
 Input (3, 224, 224)
     ↓
@@ -110,12 +117,14 @@ Output: logits (0-1 via sigmoid)
 ## PHASE 1: INFERENCE ENHANCEMENTS (`backend/inference_enhancements.py`)
 
 **Components:**
+
 1. **Test-Time Augmentation (TTA)**: Predict on original + h-flip + v-flip, average
 2. **Confidence Calibration**: Adjust raw output to compensate for model's bias
 3. **Image Quality Filtering**: Detect suspicious brightness/contrast/color
 4. **Threshold Adjustment**: 0.5 → 0.3 for more aggressive deepfake detection
 
 **Usage in backend:**
+
 ```python
 from backend.inference_enhancements import EnhancedPredictor
 
@@ -128,6 +137,7 @@ result = predictor.predict(image)  # Returns {"label": "REAL"/"FAKE", "confidenc
 ## PHASE 3: VALIDATION (`tests/test_kaggle_diagnostics.py`)
 
 **What it does:**
+
 1. Loads fine-tuned model from `backend/models/kaggle_best.pt`
 2. Evaluates on Kaggle test set
 3. Prints accuracy, precision, recall, F1
@@ -136,6 +146,7 @@ result = predictor.predict(image)  # Returns {"label": "REAL"/"FAKE", "confidenc
 **Success criterion:** ≥70% accuracy
 
 **Run:**
+
 ```bash
 python tests/test_kaggle_diagnostics.py
 ```
@@ -145,15 +156,18 @@ python tests/test_kaggle_diagnostics.py
 ## BACKEND SERVICE (`backend/main.py`)
 
 **FastAPI endpoints:**
+
 - `GET /`: Health check
 - `POST /predict`: Single image prediction
 - `POST /predict-video`: Video frame-by-frame prediction
 
 **Uses:**
+
 - `inference_enhancements.EnhancedPredictor` for predictions
 - `data/augmentations.py` for preprocessing
 
 **To update after training:**
+
 ```python
 # Line ~20 in main.py
 MODEL_PATH = "backend/models/hybrid_full_best.pt"  # ← Change to
@@ -161,6 +175,7 @@ MODEL_PATH = "backend/models/kaggle_best.pt"       # ← After fine-tuning
 ```
 
 **Run backend:**
+
 ```bash
 python backend/main.py  # Starts on http://localhost:8000
 ```
@@ -172,6 +187,7 @@ python backend/main.py  # Starts on http://localhost:8000
 ### Training data: `data/dataset_kaggle.py`
 
 **Loader:**
+
 ```python
 from data.dataset_kaggle import KaggleDeepfakeDataset
 
@@ -187,6 +203,7 @@ for img, label in dataset:
 ```
 
 **Folder structure:**
+
 ```
 Dataset/
 ├── TRAIN/
@@ -201,11 +218,11 @@ Dataset/
 
 ## KEY FILES TO MODIFY (For College GPU)
 
-| File | Change | Location |
-|------|--------|----------|
-| `training/finetune_kaggle.py` | batch_size, num_workers, data_root | ~lines 30-40 |
-| `backend/main.py` | MODEL_PATH | ~line 20 |
-| `tests/test_kaggle_diagnostics.py` | data_root if needed | ~line 10 |
+| File                               | Change                             | Location     |
+| ---------------------------------- | ---------------------------------- | ------------ |
+| `training/finetune_kaggle.py`      | batch_size, num_workers, data_root | ~lines 30-40 |
+| `backend/main.py`                  | MODEL_PATH                         | ~line 20     |
+| `tests/test_kaggle_diagnostics.py` | data_root if needed                | ~line 10     |
 
 ---
 
@@ -220,6 +237,7 @@ Frontend:    next.js, react (separate)
 ```
 
 **Install:**
+
 ```bash
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
 pip install pillow tqdm fastapi uvicorn
@@ -243,13 +261,13 @@ f04b15c  docs: comprehensive GPU solution summary
 
 ## COMMON TASKS & ENTRY POINTS
 
-| Task | Entry Point | Command |
-|------|-------------|---------|
-| Fine-tune model | `training/finetune_kaggle.py` | `python training/finetune_kaggle.py --data_root /path` |
-| Test accuracy | `tests/test_kaggle_diagnostics.py` | `python tests/test_kaggle_diagnostics.py` |
-| Run backend API | `backend/main.py` | `python backend/main.py` |
-| Load model | `backend/models/hybrid_model.py` | `from backend.models.hybrid_model import HybridDeepfakeDetector` |
-| Inference | `backend/inference_enhancements.py` | `from backend.inference_enhancements import EnhancedPredictor` |
+| Task            | Entry Point                         | Command                                                          |
+| --------------- | ----------------------------------- | ---------------------------------------------------------------- |
+| Fine-tune model | `training/finetune_kaggle.py`       | `python training/finetune_kaggle.py --data_root /path`           |
+| Test accuracy   | `tests/test_kaggle_diagnostics.py`  | `python tests/test_kaggle_diagnostics.py`                        |
+| Run backend API | `backend/main.py`                   | `python backend/main.py`                                         |
+| Load model      | `backend/models/hybrid_model.py`    | `from backend.models.hybrid_model import HybridDeepfakeDetector` |
+| Inference       | `backend/inference_enhancements.py` | `from backend.inference_enhancements import EnhancedPredictor`   |
 
 ---
 

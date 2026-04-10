@@ -2,40 +2,45 @@
 
 **Objective:** Identify GPU resources, configure Remote SSH, run fine-tuning, achieve 70%+ accuracy
 
+**📌 QUICK REFERENCE:** All GPU specs, network info, and setup commands are in [`../GPU_SPECS.md`](../GPU_SPECS.md) (keep outside Git repo)
+
 ---
 
 ## SESSION 1 (Next Session): GPU DISCOVERY & SETUP
 
 ### Step 1: Identify GPU Specifications
+
 When you have access to college system, gather:
+
 ```
 1. GPU Model: nvidia-smi
    - Output shows: Tesla V100, A100, RTX 4090, T4, etc.
-   
+
 2. VRAM: nvidia-smi
    - Example: 16GB, 24GB, 32GB, 80GB
-   
+
 3. Compute Capability: nvidia-smi -q
    - Used for optimization flags
-   
+
 4. Number of GPUs: nvidia-smi -q | grep "Gpu" | wc -l
-   
+
 5. PyTorch Access: python -c "import torch; print(torch.cuda.get_device_name(0)); print(torch.cuda.get_device_properties(0).total_memory / 1e9, 'GB')"
 ```
 
 ### Step 2: Configure Remote SSH in VS Code
+
 ```
 1. Install "Remote - SSH" extension (already done ✓)
 
 2. Add SSH config:
    - Press Ctrl+Shift+P > Remote-SSH: Open Configuration File
    - Add entry:
-   
+
    Host CollegeGPU
        HostName <college_server_ip_or_hostname>
        User <your_college_username>
        IdentityFile ~/.ssh/id_rsa
-       
+
 3. Connect:
    - Press Ctrl+Shift+P > Remote-SSH: Connect to Host
    - Select "CollegeGPU"
@@ -43,11 +48,12 @@ When you have access to college system, gather:
 
 4. Verify connection:
    - Should show "SSH: CollegeGPU" in bottom-left corner
-   - Open terminal: Ctrl+` 
+   - Open terminal: Ctrl+`
    - Run: nvidia-smi
 ```
 
 ### Step 3: Transfer Dataset to College System (if needed)
+
 ```bash
 # Option A: SCP (secure copy)
 scp -r "C:\Users\Aafi\Desktop\Dataset" <college_user>@<college_ip>:/path/on/college/
@@ -60,6 +66,7 @@ scp -r "C:\Users\Aafi\Desktop\Dataset" <college_user>@<college_ip>:/path/on/coll
 ```
 
 ### Step 4: Setup Python Environment on College GPU
+
 ```bash
 # SSH into college system
 ssh CollegeGPU
@@ -84,6 +91,7 @@ python -c "import torch; print(torch.cuda.is_available(), torch.cuda.device_coun
 **Edit: `training/finetune_kaggle.py`**
 
 Based on your GPU VRAM, set batch_size:
+
 ```
 GPU VRAM    | Batch Size | Est. Training Time
 ----------- | ---------- | ------------------
@@ -95,6 +103,7 @@ GPU VRAM    | Batch Size | Est. Training Time
 ```
 
 Find in finetune_kaggle.py and modify:
+
 ```python
 CONFIG = {
     'lr': 1e-5,           # Keep this (domain adaptation)
@@ -106,11 +115,13 @@ CONFIG = {
 ```
 
 Also update dataset path:
+
 ```python
 data_root = "/path/to/Dataset"  # Update to college system path
 ```
 
 ### Run Training
+
 ```bash
 # SSH into college GPU system
 ssh CollegeGPU
@@ -125,6 +136,7 @@ tmux attach -t training  # To check progress anytime
 ```
 
 ### Monitor Training
+
 ```bash
 # Watch progress
 nvidia-smi -l 1  # GPU usage every 1 second
@@ -137,6 +149,7 @@ tmux capture-pane -t training -p
 ```
 
 ### After Training Completes
+
 ```bash
 # Verify model saved
 ls -lh checkpoints/kaggle_finetune/best_kaggle.pt
@@ -154,13 +167,13 @@ python tests/test_kaggle_diagnostics.py
 
 ## TROUBLESHOOTING FOR COLLEGE GPU
 
-| Issue | Solution |
-|-------|----------|
-| CUDA out of memory | Reduce batch_size: 64 → 32 → 16 |
-| Connection drops | Use tmux/screen for persistent terminal |
-| GPU not detected | `nvidia-smi` should show device; if not, check CUDA install |
-| Slow training | Check `nvidia-smi` - if GPU% < 30%, increase batch_size |
-| Dataset not found | Update data_root path in finetune_kaggle.py |
+| Issue               | Solution                                                     |
+| ------------------- | ------------------------------------------------------------ |
+| CUDA out of memory  | Reduce batch_size: 64 → 32 → 16                              |
+| Connection drops    | Use tmux/screen for persistent terminal                      |
+| GPU not detected    | `nvidia-smi` should show device; if not, check CUDA install  |
+| Slow training       | Check `nvidia-smi` - if GPU% < 30%, increase batch_size      |
+| Dataset not found   | Update data_root path in finetune_kaggle.py                  |
 | Module imports fail | Reinstall: `pip install torch torchvision --force-reinstall` |
 
 ---
@@ -193,6 +206,7 @@ tmux kill-session -t train           # Close session
 ## THEN (Phase 3): DEPLOYMENT
 
 Once training done and model achieves 70%+ accuracy:
+
 1. Update backend/main.py MODEL_PATH
 2. Run full test suite
 3. Record demo video

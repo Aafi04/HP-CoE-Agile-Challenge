@@ -30,6 +30,24 @@
 
 ## ✅ WHAT WE KEPT (5 files only)
 
+### 0. **GPU_SPECS.md** 🖥️ **[REFERENCE FILE - OUTSIDE GIT]**
+
+**Purpose:** GPU hardware specs, network connection info, optimal training parameters, setup commands
+**When to use:** When setting up training, choosing batch sizes, or configuring remote SSH
+**Size:** Single reference page (~60 lines)
+**Location:** Main folder `../GPU_SPECS.md` (not committed to Git)
+
+**Contains:**
+- GPU hardware (NVIDIA L4, 23GB VRAM, CUDA 12.2)
+- Optimal training config (batch_size 96-128, num_workers 4)
+- Network info (master/node1 IPs)
+- SSH connection commands
+- Verification commands
+
+**→ Use this as your definitive GPU reference**
+
+---
+
 ### 1. **PROJECT_STATUS.md** ⭐ **[READ THIS FIRST]**
 
 **Purpose:** Current project state and what we need to do next

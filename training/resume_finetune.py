@@ -1,14 +1,11 @@
 """
-Fine-tune hybrid model on Kaggle dataset to fix domain shift
-=========================================================
-
-This script loads a pre-trained model and fine-tunes it on Kaggle images
-using a very low learning rate to adapt to new domain while preserving
-learned features.
+Resume fine-tuning from checkpoint if training is interrupted
+==============================================================
 
 Usage:
-    python training/finetune_kaggle.py --local
-    python training/finetune_kaggle.py --gcs
+    python training/resume_finetune.py --resume_from 2 --data_root /path/to/data --pretrained backend/models/hybrid_full_best.pt
+    
+This script loads a checkpoint from a specific epoch and resumes training.
 """
 
 import sys
@@ -27,20 +24,19 @@ from data.dataset_kaggle import KaggleDeepfakeDataset
 from data.augmentations import get_train_transforms, get_val_transforms
 from models.hybrid_model import HybridDeepfakeDetector
 
-
 CONFIG = {
     'img_size': 224,
-    'batch_size': 48,  # FIXED: OOM at 96 → reduced to 48 for stable training (~13GB VRAM)
+    'batch_size': 96,
     'num_epochs': 10,
-    'lr': 1e-5,  # VERY low learning rate for fine-tuning
+    'lr': 1e-5,
     'weight_decay': 1e-4,
-    'num_workers': 16,  # OPTIMIZED: from 8→16 for efficient NFS I/O prefetch (256GB RAM available)
+    'num_workers': 8,
     'device': 'cuda' if torch.cuda.is_available() else 'cpu',
     'checkpoint_dir': 'checkpoints/kaggle_finetune',
 }
 
 
-def train_epoch(model, loader, optimizer, criterion, device, epoch=0):
+def train_epoch(model, loader, optimizer, criterion, device):
     """Train for one epoch"""
     model.train()
     total_loss = 0
@@ -48,7 +44,7 @@ def train_epoch(model, loader, optimizer, criterion, device, epoch=0):
     total = 0
     
     pbar = tqdm(loader, desc='Train', leave=False)
-    for batch_idx, (imgs, labels) in enumerate(pbar):
+    for imgs, labels in pbar:
         imgs = imgs.to(device)
         labels = labels.float().unsqueeze(1).to(device)
         
@@ -57,7 +53,6 @@ def train_epoch(model, loader, optimizer, criterion, device, epoch=0):
         loss = criterion(outputs, labels)
         loss.backward()
         
-        # Gradient clipping to prevent exploding gradients during fine-tuning
         torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
         
         optimizer.step()
@@ -109,15 +104,26 @@ def main(args):
     device = CONFIG['device']
     
     print(f"Using device: {device}")
-    print(f"Loading pre-trained model from: {args.pretrained}")
     
-    # Load pre-trained model
+    # Load model
     model = HybridDeepfakeDetector(num_classes=1, pretrained=False, dropout=0.4)
-    model.load_state_dict(torch.load(args.pretrained, map_location=device, weights_only=False), strict=False)
-    print("⚠️  Loaded with strict=False (partial weights due to architecture update)")
     model.to(device)
     
-    print("Model loaded successfully")
+    # Load checkpoint to resume from
+    resume_epoch = args.resume_from
+    checkpoint_path = os.path.join(CONFIG['checkpoint_dir'], f'checkpoint_epoch{resume_epoch}.pt')
+    
+    if not os.path.exists(checkpoint_path):
+        print(f"❌ Checkpoint not found: {checkpoint_path}")
+        print(f"   Available checkpoints in {CONFIG['checkpoint_dir']}:")
+        if os.path.exists(CONFIG['checkpoint_dir']):
+            for f in sorted(os.listdir(CONFIG['checkpoint_dir'])):
+                print(f"     - {f}")
+        return
+    
+    print(f"Loading checkpoint from epoch {resume_epoch}: {checkpoint_path}")
+    model.load_state_dict(torch.load(checkpoint_path, map_location=device))
+    print("✓ Model loaded from checkpoint")
     
     # Load datasets
     print(f"Loading Kaggle dataset from: {args.data_root}")
@@ -137,14 +143,14 @@ def main(args):
         batch_size=CONFIG['batch_size'],
         shuffle=True,
         num_workers=CONFIG['num_workers'],
-        pin_memory=torch.cuda.is_available()  # Only pin memory if using GPU
+        pin_memory=torch.cuda.is_available()
     )
     val_loader = DataLoader(
         val_ds,
         batch_size=CONFIG['batch_size'],
         shuffle=False,
         num_workers=CONFIG['num_workers'],
-        pin_memory=torch.cuda.is_available()  # Only pin memory if using GPU
+        pin_memory=torch.cuda.is_available()
     )
     
     # Loss and optimizer
@@ -154,20 +160,26 @@ def main(args):
         lr=CONFIG['lr'],
         weight_decay=CONFIG['weight_decay']
     )
+    
+    # Scheduler: create a new one, but we'll skip to the current epoch
     scheduler = CosineAnnealingLR(optimizer, T_max=CONFIG['num_epochs'])
+    
+    # Skip scheduler steps to match the resumed epoch
+    for _ in range(resume_epoch):
+        scheduler.step()
     
     # Training loop
     best_val_acc = 0
     best_model_path = os.path.join(CONFIG['checkpoint_dir'], 'best_kaggle.pt')
     
-    print(f"\nStarting fine-tuning for {CONFIG['num_epochs']} epochs")
-    print(f"Learning rate: {CONFIG['lr']} (very low for domain adaptation)")
+    print(f"\nResuming fine-tuning from epoch {resume_epoch}")
+    print(f"Will train epochs {resume_epoch + 1} to {CONFIG['num_epochs']}")
     print("="*60)
     
-    for epoch in range(CONFIG['num_epochs']):
+    for epoch in range(resume_epoch, CONFIG['num_epochs']):
         print(f"\nEpoch {epoch+1}/{CONFIG['num_epochs']}")
         
-        train_loss, train_acc = train_epoch(model, train_loader, optimizer, criterion, device, epoch=epoch)
+        train_loss, train_acc = train_epoch(model, train_loader, optimizer, criterion, device)
         val_loss, val_acc = val_epoch(model, val_loader, criterion, device)
         
         print(f"Train Loss: {train_loss:.4f}, Train Acc: {train_acc:.4f}")
@@ -181,7 +193,7 @@ def main(args):
             torch.save(model.state_dict(), best_model_path)
             print(f"✓ Best model saved to {best_model_path} (acc={val_acc:.4f})")
         
-        # Save checkpoint every epoch
+        # Save checkpoint for this epoch
         checkpoint_path = os.path.join(
             CONFIG['checkpoint_dir'],
             f'checkpoint_epoch{epoch+1}.pt'
@@ -200,18 +212,24 @@ def main(args):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description='Fine-tune on Kaggle dataset')
+    parser = argparse.ArgumentParser(description='Resume fine-tuning from checkpoint')
+    parser.add_argument(
+        '--resume_from',
+        type=int,
+        required=True,
+        help='Epoch number to resume from (will start training at epoch N+1)'
+    )
     parser.add_argument(
         '--data_root',
         type=str,
-        default='./Dataset',  # Update via command-line arg for your system
-        help='Path to Kaggle dataset root (TRAIN/ and VALIDATION/ folders)'
+        default='./Dataset',
+        help='Path to Kaggle dataset root'
     )
     parser.add_argument(
         '--pretrained',
         type=str,
         default='backend/models/hybrid_full_best.pt',
-        help='Path to pre-trained model weights'
+        help='Path to pre-trained model (unused for resume, but kept for consistency)'
     )
     
     args = parser.parse_args()

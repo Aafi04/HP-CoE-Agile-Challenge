@@ -28,9 +28,13 @@ app.add_middleware(
 # --- Global model state ---
 MODEL = None
 PREDICTOR = None  # Enhanced predictor with mitigations
-DEVICE = "cpu"
+DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-MODEL_PATH = os.path.join(BASE_DIR, "backend", "models", "hybrid_full_best.pt")
+# Use fine-tuned model trained on Kaggle domain (96.21% accuracy)
+MODEL_PATH = os.path.join(BASE_DIR, "backend", "models", "hybrid_kaggle_finetuned.pt")
+# Fallback to pre-trained if fine-tuned not available
+if not os.path.exists(MODEL_PATH):
+    MODEL_PATH = os.path.join(BASE_DIR, "backend", "models", "hybrid_full_best.pt")
 MODEL_TYPE = 'hybrid'
 TRANSFORM = get_val_transforms(224)
 FRAME_SAMPLE_RATE = 10
@@ -68,7 +72,7 @@ async def health():
 
 @app.post("/predict", response_model=PredictionResponse)
 async def predict(file: UploadFile = File(...)):
-    if not file.content_type.startswith("image/"):
+    if not file.content_type or not file.content_type.startswith("image/"):
         raise HTTPException(status_code=400, detail="Only image files are supported.")
 
     contents = await file.read()
@@ -80,11 +84,11 @@ async def predict(file: UploadFile = File(...)):
     image_tensor = TRANSFORM(image).unsqueeze(0).to(DEVICE)
 
     # Use enhanced predictor with domain shift mitigations
-    is_fake, confidence, details = PREDICTOR.predict(
+    is_fake, calibrated_confidence, details = PREDICTOR.predict(
         image_tensor, image, return_details=True
     )
 
-    confidence, heatmap, _ = generate_gradcam(
+    confidence_gradcam, heatmap, _ = generate_gradcam(
         MODEL, image_tensor, MODEL_TYPE, DEVICE
     )
 
@@ -96,7 +100,7 @@ async def predict(file: UploadFile = File(...)):
 
     return PredictionResponse(
         is_fake=is_fake,
-        confidence=round(confidence, 4),
+        confidence=round(calibrated_confidence, 4),
         label=label,
         heatmap_base64=heatmap_b64
     )

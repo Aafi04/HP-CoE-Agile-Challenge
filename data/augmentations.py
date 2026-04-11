@@ -39,14 +39,30 @@ def resize_with_pad(img, target_size=(224, 224)):
 
 
 def get_train_transforms(img_size=224):
-    return T.Compose([
-        ResizeWithPad((img_size, img_size)),  # Pickleable class instead of lambda
-        T.RandomHorizontalFlip(p=0.5),
-        T.ColorJitter(brightness=0.2, contrast=0.2, saturation=0.2, hue=0.1),
+    transforms_list = [
+        ResizeWithPad((img_size, img_size)),
+    ]
+    
+    # Handle API differences in torchvision versions
+    try:
+        transforms_list.append(T.RandomHorizontalFlip(p=0.5))
+    except TypeError:
+        transforms_list.append(T.RandomHorizontalFlip())
+    
+    transforms_list.extend([
+        T.ColorJitter(brightness=0.1, contrast=0.1, saturation=0.1, hue=0),
         T.ToTensor(),
         T.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
-        T.RandomErasing(p=0.2, scale=(0.02, 0.1))
     ])
+    
+    # RandomErasing may not be available in older versions
+    if hasattr(T, 'RandomErasing'):
+        try:
+            transforms_list.append(T.RandomErasing(p=0.2, scale=(0.02, 0.1)))
+        except (TypeError, AttributeError):
+            pass
+    
+    return T.Compose(transforms_list)
 
 
 def get_val_transforms(img_size=224):

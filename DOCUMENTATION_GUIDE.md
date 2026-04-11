@@ -38,6 +38,7 @@
 **Location:** Main folder `../GPU_SPECS.md` (not committed to Git)
 
 **Contains:**
+
 - GPU hardware (NVIDIA L4, 23GB VRAM, CUDA 12.2)
 - Optimal training config (batch_size 96-128, num_workers 4)
 - Network info (master/node1 IPs)

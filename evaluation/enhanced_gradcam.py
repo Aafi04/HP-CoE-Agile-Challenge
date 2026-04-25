@@ -359,8 +359,9 @@ class HybridGradCAM:
             'freq_importance': freq_imp,
             'confidence': confidence,
             'fft_activation_pattern': fft_activation,
-            'decision': 'DEEPFAKE' if confidence > 0.3 else 'REAL',
-            'decision_confidence': max(confidence, 1 - confidence),
+            # Final decisioning is handled in the API calibration layer.
+            'decision': None,
+            'decision_confidence': None,
             'target_class': target_class,  # Track which class GradCAM targeted
             'gradcam_debug': gradcam_debug,
         }
@@ -394,7 +395,7 @@ def analyze_prediction(model, image_tensor, model_type='hybrid', device='cpu'):
             confidence = torch.sigmoid(output).item()
         result = {
             'confidence': confidence,
-            'decision': 'DEEPFAKE' if confidence > 0.3 else 'REAL',
+            'decision': None,
             'spatial_importance': 1.0,
             'freq_importance': 0.0  # Only spatial branch for non-hybrid
         }

@@ -11,6 +11,7 @@ import numpy as np
 import tempfile
 import requests
 import json
+import base64
 import os
 import sys
 
@@ -71,6 +72,8 @@ def test_video_endpoint(video_path, api_url="http://127.0.0.1:8000"):
         required_fields = [
             'is_fake',
             'confidence',
+            'calibrated_confidence',
+            'risk_level',
             'label',
             'frame_confidences',
             'top_frame_index',
@@ -88,10 +91,21 @@ def test_video_endpoint(video_path, api_url="http://127.0.0.1:8000"):
         
         assert isinstance(data['is_fake'], bool), "is_fake should be a boolean"
         assert isinstance(data['confidence'], (int, float)), "confidence should be numeric"
+        assert isinstance(data['calibrated_confidence'], (int, float)), "calibrated_confidence should be numeric"
+        assert isinstance(data['risk_level'], str), "risk_level should be a string"
         assert isinstance(data['label'], str), "label should be a string"
         assert isinstance(data['top_frame_index'], int), "top_frame_index should be an int"
         assert isinstance(data['heatmap_base64'], str), "heatmap_base64 should be a string"
         assert isinstance(data['frames_analyzed'], int), "frames_analyzed should be an int"
+
+        assert 0.0 <= data['confidence'] <= 1.0, "confidence out of bounds"
+        assert 0.0 <= data['calibrated_confidence'] <= 1.0, "calibrated_confidence out of bounds"
+        assert data['risk_level'] in {'UNCERTAIN', 'BORDERLINE', 'CONFIDENT'}, "Invalid risk_level"
+
+        for conf in data['frame_confidences']:
+            assert 0.0 <= conf <= 1.0, "frame confidence out of bounds"
+
+        base64.b64decode(data['heatmap_base64'], validate=True)
         
         print(f"\n✅ PASSED - All assertions passed!")
         return True

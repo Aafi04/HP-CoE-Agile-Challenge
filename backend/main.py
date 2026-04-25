@@ -3,6 +3,7 @@ sys.path.insert(0, '.')
 import io
 import os
 import base64
+import hashlib
 import tempfile
 import torch
 import numpy as np
@@ -15,7 +16,7 @@ from typing import Optional, List
 from data.augmentations import get_val_transforms
 from evaluation.gradcam import load_model
 from evaluation.enhanced_gradcam import HybridGradCAM
-from backend.inference_enhancements import EnhancedPredictor, check_image_quality
+from backend.inference_enhancements import EnhancedPredictor
 from backend.confidence_calibrator import ConfidenceCalibrator
 
 app = FastAPI(title="Deepfake Detection API", version="1.0.0")
@@ -32,13 +33,42 @@ MODEL = None
 PREDICTOR = None  # Enhanced predictor with mitigations
 CONFIDENCE_CAL = None  # Kaggle domain-specific calibration
 GRADCAM_ANALYZER = None  # Enhanced dual-domain GradCAM
+LOADED_MODEL_HASH = None
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-# Use fine-tuned model trained on Kaggle domain (96.21% accuracy)
-MODEL_PATH = os.path.join(BASE_DIR, "backend", "models", "hybrid_kaggle_finetuned.pt")
-# Fallback to pre-trained if fine-tuned not available
-if not os.path.exists(MODEL_PATH):
-    MODEL_PATH = os.path.join(BASE_DIR, "backend", "models", "hybrid_full_best.pt")
+MODEL_VERSION = os.getenv("MODEL_VERSION", "kaggle-finetuned")
+EXPECTED_MODEL_HASH = os.getenv("EXPECTED_MODEL_HASH")
+
+
+def _compute_sha256(file_path: str) -> str:
+    sha256 = hashlib.sha256()
+    with open(file_path, "rb") as file_handle:
+        for chunk in iter(lambda: file_handle.read(1024 * 1024), b""):
+            sha256.update(chunk)
+    return sha256.hexdigest()
+
+
+def _resolve_model_path() -> str:
+    configured_model_path = os.getenv("MODEL_PATH")
+    if configured_model_path:
+        return configured_model_path
+
+    candidates = [
+        "/app/models/hybrid_kaggle_finetuned.pt",
+        os.path.join(BASE_DIR, "backend", "models", "hybrid_kaggle_finetuned.pt"),
+        os.path.join(BASE_DIR, "models", "hybrid_kaggle_finetuned.pt"),
+    ]
+
+    for candidate in candidates:
+        if os.path.exists(candidate):
+            return candidate
+
+    raise FileNotFoundError(
+        "No Kaggle-finetuned model found. Set MODEL_PATH or place hybrid_kaggle_finetuned.pt in a known location."
+    )
+
+
+MODEL_PATH = _resolve_model_path()
 MODEL_TYPE = 'hybrid'
 TRANSFORM = get_val_transforms(224)
 FRAME_SAMPLE_RATE = 10
@@ -123,6 +153,8 @@ class PredictionResponse(BaseModel):
 class VideoResponse(BaseModel):
     is_fake: bool
     confidence: float
+    calibrated_confidence: Optional[float] = None
+    risk_level: Optional[str] = None
     label: str
     frame_confidences: List[float]
     top_frame_index: int
@@ -131,9 +163,15 @@ class VideoResponse(BaseModel):
 
 @app.on_event("startup")
 async def load_model_on_startup():
-    global MODEL, PREDICTOR, CONFIDENCE_CAL, GRADCAM_ANALYZER
+    global MODEL, PREDICTOR, CONFIDENCE_CAL, GRADCAM_ANALYZER, LOADED_MODEL_HASH
     print(f"Loading model from {MODEL_PATH} on {DEVICE}...")
     MODEL = load_model(MODEL_PATH, MODEL_TYPE, DEVICE)
+    LOADED_MODEL_HASH = _compute_sha256(MODEL_PATH)
+    if EXPECTED_MODEL_HASH and LOADED_MODEL_HASH.lower() != EXPECTED_MODEL_HASH.lower():
+        raise RuntimeError(
+            "Loaded model hash does not match EXPECTED_MODEL_HASH. "
+            f"expected={EXPECTED_MODEL_HASH}, actual={LOADED_MODEL_HASH}"
+        )
     PREDICTOR = EnhancedPredictor(
         MODEL, DEVICE,
         use_tta=True,  # Enable test-time augmentation
@@ -147,10 +185,38 @@ async def load_model_on_startup():
     print(f"Confidence calibration: Kaggle domain (fine-tuned model)")
     print(f"GradCAM: Enhanced dual-domain (spatial + frequency branches)")
     print(f"Face detector loaded: {not FACE_CASCADE.empty()}")
+    print(f"Model version: {MODEL_VERSION}")
+    print(f"Model hash: {LOADED_MODEL_HASH[:12]}")
+    if EXPECTED_MODEL_HASH:
+        print("Expected model hash verification: PASS")
 
 @app.get("/health")
 async def health():
-    return {"status": "ok", "device": DEVICE, "model": MODEL_TYPE}
+    return {
+        "status": "ok",
+        "device": DEVICE,
+        "model": MODEL_TYPE,
+        "model_path": MODEL_PATH,
+        "model_version": MODEL_VERSION,
+        "model_hash": LOADED_MODEL_HASH[:12] if LOADED_MODEL_HASH else None,
+        "expected_hash_set": EXPECTED_MODEL_HASH is not None,
+    }
+
+
+@app.get("/model-info")
+async def model_info():
+    return {
+        "model_path": MODEL_PATH,
+        "model_type": MODEL_TYPE,
+        "model_version": MODEL_VERSION,
+        "model_hash": LOADED_MODEL_HASH,
+        "expected_model_hash": EXPECTED_MODEL_HASH,
+        "hash_matches_expected": (
+            (EXPECTED_MODEL_HASH is None)
+            or (LOADED_MODEL_HASH is not None and LOADED_MODEL_HASH.lower() == EXPECTED_MODEL_HASH.lower())
+        ),
+        "device": DEVICE,
+    }
 
 @app.post("/predict", response_model=PredictionResponse)
 async def predict(file: UploadFile = File(...)):
@@ -166,14 +232,18 @@ async def predict(file: UploadFile = File(...)):
     image_tensor = TRANSFORM(image).unsqueeze(0).to(DEVICE)
 
     # Use enhanced predictor with domain shift mitigations
-    is_fake, raw_confidence, details = PREDICTOR.predict(
+    _, raw_confidence, details = PREDICTOR.predict(
         image_tensor, image, return_details=True
     )
 
-    # NEW: Use Kaggle domain-specific calibration
+    # Apply the single source of truth for calibration and decisioning.
     calibration_metrics = CONFIDENCE_CAL.get_metrics(raw_confidence)
     calibrated_confidence = calibration_metrics['calibrated_confidence']
     risk_level = calibration_metrics['risk_level']
+    is_fake = calibration_metrics['decision'] == 'DEEPFAKE'
+    decision_confidence = calibration_metrics['decision_confidence']
+    if details.get('tta_uncertain'):
+        risk_level = 'UNCERTAIN'
 
     # FIXED: Use enhanced dual-domain GradCAM (spatial + frequency)
     # with proper normalization, ReLU, colormap, and alpha blending
@@ -259,7 +329,7 @@ async def predict(file: UploadFile = File(...)):
 
     return PredictionResponse(
         is_fake=is_fake,
-        confidence=round(raw_confidence, 4),
+        confidence=round(decision_confidence, 4),
         calibrated_confidence=round(calibrated_confidence, 4),
         risk_level=risk_level,
         label=label,
@@ -287,11 +357,13 @@ async def predict_video(file: UploadFile = File(...)):
             raise HTTPException(status_code=400, detail="Could not read video file.")
         
         frame_confidences = []
+        frame_raw_confidences = []
         frame_index = 0
         sampled_frame_index = 0
-        top_confidence = 0
+        top_confidence = -1.0
         top_frame_idx = 0
         top_heatmap = None
+        video_tta_uncertain = False
         
         while True:
             ret, frame = cap.read()
@@ -306,19 +378,35 @@ async def predict_video(file: UploadFile = File(...)):
                 # Convert to PIL Image
                 pil_image = Image.fromarray(frame_rgb)
                 
-                # Apply transform and run through model
+                # Apply transform and run through the same predictor path as image endpoint.
                 image_tensor = TRANSFORM(pil_image).unsqueeze(0).to(DEVICE)
-                confidence, heatmap, is_fake = generate_gradcam(
-                    MODEL, image_tensor, MODEL_TYPE, DEVICE
+                _, raw_confidence, frame_details = PREDICTOR.predict(
+                    image_tensor, pil_image, return_details=True
                 )
-                
-                frame_confidences.append(round(confidence, 4))
+
+                frame_metrics = CONFIDENCE_CAL.get_metrics(raw_confidence)
+                calibrated_confidence = float(frame_metrics['calibrated_confidence'])
+                frame_confidences.append(round(calibrated_confidence, 4))
+                frame_raw_confidences.append(float(raw_confidence))
+                if frame_details.get('tta_uncertain'):
+                    video_tta_uncertain = True
+
+                try:
+                    gradcam_result = GRADCAM_ANALYZER.generate_dual_visualization(
+                        image_tensor, frame_rgb, debug=False
+                    )
+                    frame_heatmap = gradcam_result.get('spatial_heatmap', None)
+                except Exception:
+                    frame_heatmap = None
+
+                if frame_heatmap is None:
+                    frame_heatmap = cv2.cvtColor(frame_rgb, cv2.COLOR_RGB2BGR)
                 
                 # Track highest confidence frame
-                if confidence > top_confidence:
-                    top_confidence = confidence
+                if calibrated_confidence > top_confidence:
+                    top_confidence = calibrated_confidence
                     top_frame_idx = sampled_frame_index
-                    top_heatmap = heatmap
+                    top_heatmap = frame_heatmap
                 
                 sampled_frame_index += 1
             
@@ -329,19 +417,24 @@ async def predict_video(file: UploadFile = File(...)):
         if not frame_confidences:
             raise HTTPException(status_code=400, detail="No frames could be extracted from video.")
         
-        # Encode top heatmap
-        heatmap_bgr = cv2.cvtColor(top_heatmap, cv2.COLOR_RGB2BGR)
-        _, buffer = cv2.imencode('.jpg', heatmap_bgr)
+        # Encode top heatmap (already BGR in this code path)
+        _, buffer = cv2.imencode('.jpg', top_heatmap)
         heatmap_b64 = base64.b64encode(buffer).decode('utf-8')
-        
-        # Compute mean confidence
-        mean_confidence = round(np.mean(frame_confidences), 4)
-        is_fake_overall = mean_confidence > 0.5
-        label = "DEEPFAKE" if is_fake_overall else "REAL"
+
+        # Compute overall decision from averaged raw confidence and shared calibrator.
+        mean_raw_confidence = float(np.mean(frame_raw_confidences))
+        overall_metrics = CONFIDENCE_CAL.get_metrics(mean_raw_confidence)
+        is_fake_overall = overall_metrics['decision'] == 'DEEPFAKE'
+        label = overall_metrics['decision']
+        risk_level = overall_metrics['risk_level']
+        if video_tta_uncertain:
+            risk_level = 'UNCERTAIN'
         
         return VideoResponse(
             is_fake=is_fake_overall,
-            confidence=mean_confidence,
+            confidence=round(overall_metrics['decision_confidence'], 4),
+            calibrated_confidence=round(overall_metrics['calibrated_confidence'], 4),
+            risk_level=risk_level,
             label=label,
             frame_confidences=frame_confidences,
             top_frame_index=top_frame_idx,

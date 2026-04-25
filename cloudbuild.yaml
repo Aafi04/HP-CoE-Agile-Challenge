@@ -1,11 +1,23 @@
+substitutions:
+  _IMAGE_URI: "us-central1-docker.pkg.dev/intelligent-dd-agent/deepfake-repo/deepfake-backend"
+  _MODEL_VERSION: "kaggle-finetuned"
+
 steps:
-  - name: 'gcr.io/cloud-builders/docker'
-    args: [
-      'build',
-      '-f', 'backend/Dockerfile',
-      '-t', 'us-central1-docker.pkg.dev/intelligent-dd-agent/deepfake-repo/deepfake-backend:latest',
-      '.'
-    ]
+  - name: "gcr.io/cloud-builders/docker"
+    args:
+      [
+        "build",
+        "-f",
+        "backend/Dockerfile",
+        "--build-arg",
+        "MODEL_VERSION=${_MODEL_VERSION}",
+        "-t",
+        "${_IMAGE_URI}:${SHORT_SHA}",
+        "-t",
+        "${_IMAGE_URI}:latest",
+        ".",
+      ]
 images:
-  - 'us-central1-docker.pkg.dev/intelligent-dd-agent/deepfake-repo/deepfake-backend:latest'
-timeout: '1200s'
+  - "${_IMAGE_URI}:${SHORT_SHA}"
+  - "${_IMAGE_URI}:latest"
+timeout: "1200s"

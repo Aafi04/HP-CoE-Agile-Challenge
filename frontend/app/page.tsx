@@ -7,13 +7,19 @@ const API_URL = "http://127.0.0.1:8000";
 interface PredictionResult {
   is_fake: boolean;
   confidence: number;
+  calibrated_confidence?: number;
+  risk_level?: string;
   label: string;
   heatmap_base64: string;
+  spatial_importance?: number;
+  frequency_importance?: number;
 }
 
 interface VideoResult {
   is_fake: boolean;
   confidence: number;
+  calibrated_confidence?: number;
+  risk_level?: string;
   label: string;
   frame_confidences: number[];
   top_frame_index: number;
@@ -79,8 +85,10 @@ export default function Home() {
       if (!res.ok) throw new Error(`Server error: ${res.status}`);
       const data = await res.json();
       setResult(data);
-    } catch (err: any) {
-      setError(err.message || "Something went wrong.");
+    } catch (err: unknown) {
+      const message =
+        err instanceof Error ? err.message : "Something went wrong.";
+      setError(message);
     } finally {
       setLoading(false);
     }
@@ -93,6 +101,18 @@ export default function Home() {
     setResult(null);
     setError(null);
   };
+
+  const clamp01 = (value: number) => Math.min(1, Math.max(0, value));
+
+  const getDisplayConfidence = (payload: PredictionResult | VideoResult) => {
+    if (typeof payload.calibrated_confidence === "number") {
+      const calibrated = clamp01(payload.calibrated_confidence);
+      return clamp01(payload.is_fake ? calibrated : 1 - calibrated);
+    }
+    return clamp01(payload.confidence);
+  };
+
+  const displayConfidence = result ? getDisplayConfidence(result) : 0;
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900 text-white flex flex-col items-center px-4 py-16">
@@ -314,7 +334,7 @@ export default function Home() {
                       result.is_fake ? "text-red-300" : "text-emerald-300"
                     }`}
                   >
-                    {(result.confidence * 100).toFixed(1)}%
+                    {(displayConfidence * 100).toFixed(1)}%
                   </span>
                 </div>
                 {/* Confidence Bar */}
@@ -325,9 +345,15 @@ export default function Home() {
                         ? "bg-gradient-to-r from-red-500 to-red-400"
                         : "bg-gradient-to-r from-emerald-500 to-emerald-400"
                     }`}
-                    style={{ width: `${result.confidence * 100}%` }}
+                    style={{ width: `${displayConfidence * 100}%` }}
                   />
                 </div>
+                {result.risk_level && (
+                  <p className="mt-3 text-xs text-slate-400 uppercase tracking-widest">
+                    Risk Level:{" "}
+                    <span className="text-slate-300">{result.risk_level}</span>
+                  </p>
+                )}
               </div>
 
               {/* Model Details */}
@@ -364,6 +390,25 @@ export default function Home() {
               </div>
             </div>
           )}
+
+          {!isVideo &&
+            "spatial_importance" in result &&
+            typeof result.spatial_importance === "number" &&
+            typeof result.frequency_importance === "number" && (
+              <div className="rounded-xl bg-slate-800/20 border border-slate-700/30 p-5 backdrop-blur-sm">
+                <p className="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-3">
+                  Branch Contribution
+                </p>
+                <div className="grid grid-cols-2 gap-4 text-sm">
+                  <div className="text-slate-300">
+                    Spatial: {result.spatial_importance.toFixed(1)}%
+                  </div>
+                  <div className="text-slate-300">
+                    Frequency: {result.frequency_importance.toFixed(1)}%
+                  </div>
+                </div>
+              </div>
+            )}
 
           {/* For Videos */}
           {isVideo && "frames_analyzed" in result && (

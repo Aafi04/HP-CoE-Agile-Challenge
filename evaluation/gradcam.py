@@ -54,7 +54,7 @@ def generate_gradcam(model, image_tensor, model_type='hybrid', device='cuda'):
     # Overlay heatmap
     heatmap_overlay = show_cam_on_image(img, grayscale_cam, use_rgb=True)
 
-    return confidence, heatmap_overlay, confidence > 0.5
+    return confidence, heatmap_overlay, confidence > 0.3
 
 def gradcam_from_path(image_path, model_path, model_type='hybrid', device='cuda'):
     """

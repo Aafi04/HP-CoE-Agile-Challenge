@@ -9,14 +9,12 @@ Quick fixes that don't require retraining:
 """
 
 import torch
-import torch.nn.functional as F
 import numpy as np
 import cv2
-from PIL import Image
 import torchvision.transforms as T
 
 
-# Confidence calibration - lowered threshold for Kaggle domain
+# Decision threshold for raw model confidence (single calibration happens in API layer)
 CONFIDENCE_THRESHOLD = 0.3  # Default: 0.5, Adjusted for domain shift
 ENABLE_TTA = True  # Test-time augmentation
 ENABLE_QUALITY_CHECK = True  # Image quality filtering
@@ -125,30 +123,13 @@ def predict_with_tta(model, image_tensor, device, transforms_list=None):
 
 def confidence_calibration(raw_confidence, method='scale'):
     """
-    Apply confidence calibration to account for domain shift.
-    
-    The model is overly conservative on Kaggle images (predicts "real" for everything).
-    This function adjusts confidence to compensate.
-    
-    Args:
-        raw_confidence: Model output after sigmoid (0-1)
-        method: 'scale' (multiply), 'shift' (subtract offset), or 'none'
-        
-    Returns:
-        calibrated_confidence: Adjusted confidence
+    Deprecated helper retained for backward compatibility.
+
+    Calibration is now centralized in backend/confidence_calibrator.py.
+    This function intentionally returns a bounded raw confidence.
     """
-    if method == 'shift':
-        # Shift: if model gives 0.1, adjust to "fake" (higher score)
-        # Idea: model tends to be too low, shift everything up slightly
-        return np.clip(raw_confidence * 1.5 - 0.1, 0, 1)
-    
-    elif method == 'scale':
-        # Scale: confidence is compressed, spread it out
-        # Center around 0.5 and expand variance
-        return np.clip((raw_confidence - 0.5) * 1.3 + 0.5, 0, 1)
-    
-    else:
-        return raw_confidence
+    del method
+    return float(np.clip(raw_confidence, 0.0, 1.0))
 
 
 class EnhancedPredictor:
@@ -158,8 +139,7 @@ class EnhancedPredictor:
     Combines:
     - Image quality checking
     - Test-time augmentation
-    - Confidence calibration
-    - Lowered threshold
+    - Raw confidence extraction
     """
     
     def __init__(self, model, device='cpu', use_tta=True, use_quality_check=True):
@@ -206,22 +186,25 @@ class EnhancedPredictor:
                 output = self.model(image_tensor.to(self.device))
                 confidence = torch.sigmoid(output).item()
         
-        # Step 3: Confidence calibration
-        raw_confidence = confidence
-        confidence = confidence_calibration(confidence, method='shift')
-        details['raw_confidence'] = float(raw_confidence)
-        details['calibrated_confidence'] = float(confidence)
-        
-        # Step 4: Decision with adjusted threshold
-        is_fake = confidence > CONFIDENCE_THRESHOLD
+        # Step 3: Keep raw confidence; calibration happens once in API layer
+        raw_confidence = float(confidence)
+        details['raw_confidence'] = raw_confidence
+
+        # Raise uncertainty when TTA views disagree strongly.
+        tta_std = details.get('tta_std')
+        if tta_std is not None and tta_std > 0.15:
+            details['tta_uncertain'] = True
+
+        # Step 4: Local raw-threshold decision (caller may override with calibrated logic)
+        is_fake = raw_confidence > CONFIDENCE_THRESHOLD
         
         details['threshold'] = CONFIDENCE_THRESHOLD
         details['decision'] = 'DEEPFAKE' if is_fake else 'REAL'
         
         if return_details:
-            return is_fake, confidence, details
+            return is_fake, raw_confidence, details
         else:
-            return is_fake, confidence
+            return is_fake, raw_confidence
 
 
 # For backward compatibility, create single functions

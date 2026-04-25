@@ -3,15 +3,16 @@
 .env.local
 .env.*.local
 
-# Python model files
+# Python model files & checkpoints
 *.pt
 *.pth
 *.pkl
 *.pickle
+models/
+checkpoints/
 
 venv/
 .venv
-
 
 # Python cache
 __pycache__/
@@ -57,6 +58,27 @@ build/
 *.tar.gz
 *.rar
 
+# Generated artifacts & benchmark results (should not be pushed)
+artifacts/benchmark_*.json
+artifacts/*.csv
+artifacts/baselines/
+artifacts/readiness_report_*.md
+
+# Benchmark & generated test files (ephemeral, not source)
+tests/benchmark_*.py
+tests/capture_baseline_artifacts.py
+test_kaggle_results.json
+
+# Generated markdown reports (ephemeral)
+BENCHMARK_REPORT.md
+CONFIDENCE_CALIBRATION_GUIDE.md
+BACKEND_RESOLUTION_SUMMARY.md
+CODE_CHANGES_SUMMARY.md
+DOCUMENTATION_GUIDE.md
+FIXES_SUMMARY.md
+GRADCAM_BEFORE_AFTER_GUIDE.md
+COLLEGE_GPU_SETUP.md
+
 # IDE
 .vscode/
 .idea/
@@ -68,3 +90,9 @@ build/
 # OS
 Thumbs.db
 .env.local
+
+# Temporary files
+*.tmp
+*.bak
+temp/
+tmp/

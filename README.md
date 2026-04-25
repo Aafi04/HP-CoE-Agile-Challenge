@@ -7,7 +7,7 @@ A production-grade deepfake detection system combining spatial (CNN) and frequen
 **DualCore** is a hybrid deep learning system designed to detect and analyze deepfakes in images and videos. It leverages:
 
 - **EfficientNet-B4** for spatial domain feature extraction (18.5M parameters)
-- **FFT-based frequency analysis** for anomaly detection (~0.4M parameters)  
+- **FFT-based frequency analysis** for anomaly detection (~0.4M parameters)
 - **Fusion classifier** combining both branches for robust decision-making
 - **Test-time augmentation (TTA)** for inference stability
 - **GradCAM visualization** with face-guided heatmaps for explainability
@@ -15,16 +15,16 @@ A production-grade deepfake detection system combining spatial (CNN) and frequen
 
 ### Quick Stats
 
-| Metric | Value |
-|--------|-------|
-| **Model Accuracy** | 96.21% (Kaggle validation) |
-| **Controlled Image Set** | 6/6 (100%) |
-| **Random Dataset** | 12/13 (92.3%) |
-| **Model Size** | 76.6MB |
-| **Inference Time (CPU)** | 500-800ms per image |
-| **Inference Time (GPU)** | ~200-300ms per image |
-| **Parameters** | 18.9M |
-| **Status** | **Production Ready** ✅ |
+| Metric                   | Value                      |
+| ------------------------ | -------------------------- |
+| **Model Accuracy**       | 96.21% (Kaggle validation) |
+| **Controlled Image Set** | 6/6 (100%)                 |
+| **Random Dataset**       | 12/13 (92.3%)              |
+| **Model Size**           | 76.6MB                     |
+| **Inference Time (CPU)** | 500-800ms per image        |
+| **Inference Time (GPU)** | ~200-300ms per image       |
+| **Parameters**           | 18.9M                      |
+| **Status**               | **Production Ready** ✅    |
 
 ## Project Structure
 
@@ -144,6 +144,7 @@ pytest tests/ --cov=backend --cov=evaluation
 ### Health & Model Info
 
 **`GET /health`** – Server status and model metadata
+
 ```json
 {
   "status": "ok",
@@ -156,6 +157,7 @@ pytest tests/ --cov=backend --cov=evaluation
 ```
 
 **`GET /model-info`** – Full model details including hash verification
+
 ```json
 {
   "model_path": "/app/models/hybrid_kaggle_finetuned.pt",
@@ -172,12 +174,14 @@ pytest tests/ --cov=backend --cov=evaluation
 **`POST /predict`** – Deepfake detection for single image
 
 **Request:**
+
 ```
 Content-Type: multipart/form-data
 file: <image file> (JPG, PNG, WEBP)
 ```
 
 **Response:**
+
 ```json
 {
   "is_fake": true,
@@ -192,6 +196,7 @@ file: <image file> (JPG, PNG, WEBP)
 ```
 
 **Fields:**
+
 - `is_fake` (bool): Final decision (true = deepfake)
 - `confidence` (float): Display-friendly decision confidence [0, 1]
 - `calibrated_confidence` (float): Raw calibrated model output
@@ -206,12 +211,14 @@ file: <image file> (JPG, PNG, WEBP)
 **`POST /predict_video`** – Deepfake detection for video (sampled frame-by-frame)
 
 **Request:**
+
 ```
 Content-Type: multipart/form-data
 file: <video file> (MP4)
 ```
 
 **Response:**
+
 ```json
 {
   "is_fake": true,
@@ -227,6 +234,7 @@ file: <video file> (MP4)
 ```
 
 **Fields:**
+
 - `frame_confidences` (list): Per-frame calibrated confidence scores
 - `top_frame_index` (int): Index of highest-confidence frame in sample
 - `frames_analyzed` (int): Number of frames sampled (every 10th frame)
@@ -277,6 +285,7 @@ Input Image (224×224)
 ### Test-Time Augmentation (TTA)
 
 During inference, the model evaluates **4 augmented versions** of each image:
+
 1. Original
 2. Horizontal flip
 3. Color jitter (brightness ±10%, contrast ±10%)
@@ -295,20 +304,20 @@ Predictions are averaged; if variance exceeds threshold, risk_level → UNCERTAI
 
 ### Backend Configuration
 
-| Variable | Default | Description |
-|----------|---------|-------------|
-| `MODEL_PATH` | Auto-resolved | Path to model checkpoint (.pt file) |
-| `MODEL_VERSION` | `kaggle-finetuned` | Model version tag |
-| `EXPECTED_MODEL_HASH` | (unset) | Optional SHA-256 hash for verification |
-| `DEVICE` | Auto-detect | `cuda` or `cpu` |
+| Variable              | Default            | Description                            |
+| --------------------- | ------------------ | -------------------------------------- |
+| `MODEL_PATH`          | Auto-resolved      | Path to model checkpoint (.pt file)    |
+| `MODEL_VERSION`       | `kaggle-finetuned` | Model version tag                      |
+| `EXPECTED_MODEL_HASH` | (unset)            | Optional SHA-256 hash for verification |
+| `DEVICE`              | Auto-detect        | `cuda` or `cpu`                        |
 
 ### Docker/Cloud Deployment
 
-| Variable | Example | Description |
-|----------|---------|-------------|
-| `GCS_MODEL_URI` | `gs://bucket/models/hybrid_kaggle_finetuned.pt` | GCS path for model download |
-| `MODEL_DIR` | `/app/models` | Container model directory |
-| `MODEL_FILENAME` | `hybrid_kaggle_finetuned.pt` | Filename after download |
+| Variable         | Example                                         | Description                 |
+| ---------------- | ----------------------------------------------- | --------------------------- |
+| `GCS_MODEL_URI`  | `gs://bucket/models/hybrid_kaggle_finetuned.pt` | GCS path for model download |
+| `MODEL_DIR`      | `/app/models`                                   | Container model directory   |
+| `MODEL_FILENAME` | `hybrid_kaggle_finetuned.pt`                    | Filename after download     |
 
 ## Deployment
 
@@ -332,6 +341,7 @@ gcloud builds submit --config cloudbuild.yaml
 ```
 
 Substitutions in `cloudbuild.yaml`:
+
 - `_IMAGE_URI`: Container registry path
 - `_MODEL_VERSION`: Model version tag (default: `kaggle-finetuned`)
 
@@ -349,11 +359,9 @@ Substitutions in `cloudbuild.yaml`:
 - **CONFIDENT** (distance ≥ 0.2 from threshold)
   - Decision is clear and well-supported
   - Use for high-stakes decisions (automated blocking, flagging)
-  
 - **BORDERLINE** (distance 0.1–0.2 from threshold)
   - Some uncertainty, but lean is clear
   - Recommend human review for borderline cases
-  
 - **UNCERTAIN** (distance < 0.1 from threshold)
   - Very close to decision boundary
   - **Always** escalate to human review
@@ -361,38 +369,38 @@ Substitutions in `cloudbuild.yaml`:
 
 ### Example Interpretations
 
-| Raw | Calibrated | Threshold | Decision | Risk Level | Interpretation |
-|-----|-----------|-----------|----------|------------|-----------------|
-| 0.1 | 0.04 | 0.3 | REAL | CONFIDENT | Clearly authentic |
-| 0.3 | 0.31 | 0.3 | DEEPFAKE | BORDERLINE | Slight deepfake signal, borderline |
-| 0.35 | 0.35 | 0.3 | DEEPFAKE | UNCERTAIN | Very close call, needs review |
-| 0.7 | 0.83 | 0.3 | DEEPFAKE | CONFIDENT | Clear deepfake detection |
+| Raw  | Calibrated | Threshold | Decision | Risk Level | Interpretation                     |
+| ---- | ---------- | --------- | -------- | ---------- | ---------------------------------- |
+| 0.1  | 0.04       | 0.3       | REAL     | CONFIDENT  | Clearly authentic                  |
+| 0.3  | 0.31       | 0.3       | DEEPFAKE | BORDERLINE | Slight deepfake signal, borderline |
+| 0.35 | 0.35       | 0.3       | DEEPFAKE | UNCERTAIN  | Very close call, needs review      |
+| 0.7  | 0.83       | 0.3       | DEEPFAKE | CONFIDENT  | Clear deepfake detection           |
 
 ## Benchmarks & Performance
 
 ### Endpoint Latency (Measured on CPU, April 24, 2026)
 
-| Endpoint | Mean | Median | P95 | P99 |
-|----------|------|--------|-----|-----|
-| POST /predict | 4,077ms | 4,063ms | 4,243ms | 4,315ms |
+| Endpoint                  | Mean    | Median  | P95      | P99      |
+| ------------------------- | ------- | ------- | -------- | -------- |
+| POST /predict             | 4,077ms | 4,063ms | 4,243ms  | 4,315ms  |
 | POST /predict_video (30f) | 7,100ms | 5,863ms | 11,627ms | 11,781ms |
 
 ### Throughput
 
-| Scenario | Throughput | Notes |
-|----------|-----------|-------|
-| Single-thread `/predict` | 0.24 img/s | Baseline |
+| Scenario                 | Throughput | Notes               |
+| ------------------------ | ---------- | ------------------- |
+| Single-thread `/predict` | 0.24 img/s | Baseline            |
 | Concurrent x4 `/predict` | 0.27 img/s | **Best throughput** |
-| Video frame rate | 2.6 fps | End-to-end |
+| Video frame rate         | 2.6 fps    | End-to-end          |
 
 ### Pipeline Breakdown (CPU)
 
-| Stage | Mean | % of Total | Bottleneck |
-|-------|------|-----------|-----------|
-| Preprocessing | 13.8ms | 0.3% | — |
-| Model forward | 1,125ms | 25% | — |
-| **GradCAM** | **3,292ms** | **75%** | ⚠️ Primary |
-| Post-processing | 0.3ms | <0.1% | — |
+| Stage           | Mean        | % of Total | Bottleneck |
+| --------------- | ----------- | ---------- | ---------- |
+| Preprocessing   | 13.8ms      | 0.3%       | —          |
+| Model forward   | 1,125ms     | 25%        | —          |
+| **GradCAM**     | **3,292ms** | **75%**    | ⚠️ Primary |
+| Post-processing | 0.3ms       | <0.1%      | —          |
 
 **Optimization Note:** GradCAM generation dominates latency. For real-time scenarios, consider disabling heatmaps or offloading to background jobs.
 
